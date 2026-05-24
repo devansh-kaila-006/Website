@@ -21,16 +21,29 @@ export default function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('maynit-theme') || 'classic';
   });
+  const [template, setTemplate] = useState(() => {
+    return localStorage.getItem('maynit-template') || 'classic';
+  });
 
   useEffect(() => {
     const root = document.documentElement;
-    // Clear and establish active theme stylesheet hook
-    root.classList.remove('theme-classic', 'theme-emerald', 'theme-obsidian');
+    
+    // Clear previously configured theme or template classes on root element
+    const classesToRemove = Array.from(root.classList).filter(
+      (className) => className.startsWith('theme-') || className.startsWith('template-')
+    );
+    classesToRemove.forEach((className) => root.classList.remove(className));
+
     if (theme !== 'classic') {
       root.classList.add(`theme-${theme}`);
     }
+    if (template !== 'classic') {
+      root.classList.add(`template-${template}`);
+    }
+
     localStorage.setItem('maynit-theme', theme);
-  }, [theme]);
+    localStorage.setItem('maynit-template', template);
+  }, [theme, template]);
 
   const renderActiveView = () => {
     switch (view) {
@@ -77,8 +90,13 @@ export default function App() {
       {/* Sustainable Foot Section */}
       <Footer setView={setView} />
 
-      {/* Persistent Floating Theme Selection Tool */}
-      <ThemeSelector currentTheme={theme} onThemeChange={setTheme} />
+      {/* Persistent Floating Theme & Layout Template Selection Tool */}
+      <ThemeSelector 
+        currentTheme={theme} 
+        onThemeChange={setTheme} 
+        currentTemplate={template} 
+        onTemplateChange={setTemplate} 
+      />
     </div>
   );
 }

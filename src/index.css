@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Roboto+Mono:wght@300;400;500;650;700&family=Inter:wght@300;400;500;600;750&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Roboto+Mono:wght@300;400;500;650;700&family=Inter:wght@300;400;500;600;750&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -210,4 +210,99 @@
 [class*="bg-[#E6F3FF]/50"] {
   background-color: rgba(var(--theme-lbg-rgb), 0.50) !important;
 }
+
+/* ==========================================================================
+   MAYINIT CONSULTING MULTI-TEMPLATE BLUEPRINTS (5 LAYOUT OPTIONS)
+   ========================================================================== */
+
+/* 1. CLASSIC / DEFAULT TEMPLATE has standard styling, no overrides needed */
+
+/* 2. SWISS SARK TEMPLATE (Ultra-precision grid alignment, clean hairline rulers, thin flat card boundaries) */
+:root.template-stark .bg-white,
+:root.template-stark [class*="bg-slate-50"],
+:root.template-stark [class*="bg-white"],
+:root.template-stark [class*="bg-[#E6F3FF]"] {
+  border: 1px solid #1E293B !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+}
+
+:root.template-stark button,
+:root.template-stark [class*="cursor-pointer"] {
+  border: 1px solid #1E293B !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* 3. NORDIC EDITORIAL TEMPLATE (Warm parchment texture, serif typography & elegant thin borders) */
+:root.template-editorial body {
+  background-color: #FAF7F2 !important;
+  color: #2F241A !important;
+}
+
+:root.template-editorial h1,
+:root.template-editorial h2,
+:root.template-editorial h3,
+:root.template-editorial h4,
+:root.template-editorial h5,
+:root.template-editorial h6 {
+  font-family: "Playfair Display", Georgia, serif !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.02em !important;
+}
+
+:root.template-editorial .bg-white,
+:root.template-editorial [class*="bg-slate-50"],
+:root.template-editorial [class*="bg-white"],
+:root.template-editorial [class*="bg-[#E6F3FF]"] {
+  background-color: #FFFCF8 !important;
+  border: 1px solid #E6D9C5 !important;
+  border-radius: 3px !important;
+  box-shadow: 0 6px 20px -10px rgba(110, 90, 70, 0.12) !important;
+}
+
+:root.template-editorial button,
+:root.template-editorial [class*="cursor-pointer"] {
+  border-radius: 3px !important;
+  font-family: "Playfair Display", Georgia, serif !important;
+  text-transform: capitalize !important;
+  box-shadow: none !important;
+}
+
+/* 4. SLEEK FINTECH TEMPLATE (Tech-focused clean card compartments with fine accent lines, sleek small container shadows) */
+:root.template-fintech .bg-white,
+:root.template-fintech [class*="bg-slate-50"],
+:root.template-fintech [class*="bg-white"],
+:root.template-fintech [class*="bg-[#E6F3FF]"] {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  border: 1.5px solid rgba(15, 23, 42, 0.08) !important;
+  border-bottom: 3.5px solid var(--theme-a) !important; /* Elegant Tech Accent Line to anchor cards */
+}
+
+:root.template-fintech button,
+:root.template-fintech [class*="cursor-pointer"] {
+  border-radius: 6px !important;
+}
+
+/* 5. MODERNIST SLATE TEMPLATE (Clean cool-slate container fills, subtle light-gray borders, highly structured layouts) */
+:root.template-slate .bg-white,
+:root.template-slate [class*="bg-slate-50"],
+:root.template-slate [class*="bg-white"],
+:root.template-slate [class*="bg-[#E6F3FF]"] {
+  background-color: #F8FAFC !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 24px -4px rgba(100, 116, 139, 0.08) !important;
+}
+
+:root.template-slate button,
+:root.template-slate [class*="cursor-pointer"] {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px -1px rgba(100, 116, 139, 0.06) !important;
+}
+
 
