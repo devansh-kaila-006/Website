@@ -8,13 +8,143 @@
 }
 
 @layer base {
+  :root {
+    --theme-p: #003366;
+    --theme-s: #0066CC;
+    --theme-a: #FF6B35;
+    --theme-ah: #e85a2a;
+    --theme-lbg: #E6F3FF;
+    --theme-lbg-rgb: 230, 243, 255;
+  }
+
+  :root.theme-emerald {
+    --theme-p: #0F4C43; /* Deep Emerald */
+    --theme-s: #047857; /* Rich Sage Green */
+    --theme-a: #D97706; /* Premium Amber/Gold */
+    --theme-ah: #B45309;
+    --theme-lbg: #ECFDF5;
+    --theme-lbg-rgb: 236, 253, 245;
+  }
+
+  :root.theme-obsidian {
+    --theme-p: #0F172A; /* Slate Charcoal Dark */
+    --theme-s: #475569; /* Slate Light */
+    --theme-a: #8B5CF6; /* Royal Indigo-Purple */
+    --theme-ah: #7C3AED;
+    --theme-lbg: #F8FAFC;
+    --theme-lbg-rgb: 248, 250, 252;
+  }
+
   body {
     font-family: var(--font-sans);
     background-color: #ffffff;
     color: #1e293b;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
+  
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
   }
+}
+
+/* Dynamic Classes Mapping Theme Specific Variables to Tailwind Hex Output Classes */
+
+/* Primary Navy Theme Mapping */
+.text-\[\#003366\],
+[class*="text-[#003366]"] {
+  color: var(--theme-p) !important;
+}
+
+.bg-\[\#003366\],
+[class*="bg-[#003366]"] {
+  background-color: var(--theme-p) !important;
+}
+
+.border-\[\#003366\],
+[class*="border-[#003366]"],
+[class*="border-t-[#003366]"],
+[class*="border-l-[#003366]"] {
+  border-color: var(--theme-p) !important;
+}
+
+/* Secondary Blue Theme Mapping */
+.text-\[\#0066CC\],
+[class*="text-[#0066CC]"] {
+  color: var(--theme-s) !important;
+}
+
+.bg-\[\#0066CC\],
+[class*="bg-[#0066CC]"] {
+  background-color: var(--theme-s) !important;
+}
+
+.border-\[\#0066CC\],
+[class*="border-[#0066CC]"] {
+  border-color: var(--theme-s) !important;
+}
+
+/* Accent Coral Theme Mapping */
+.text-\[\#FF6B35\],
+[class*="text-[#FF6B35]"] {
+  color: var(--theme-a) !important;
+}
+
+.bg-\[\#FF6B35\],
+[class*="bg-[#FF6B35]"] {
+  background-color: var(--theme-a) !important;
+}
+
+.border-\[\#FF6B35\],
+[class*="border-[#FF6B35]"],
+[class*="border-t-[#FF6B35]"],
+[class*="border-l-[#FF6B35]"] {
+  border-color: var(--theme-a) !important;
+}
+
+.decoration-\[\#FF6B35\],
+[class*="decoration-[#FF6B35]"] {
+  text-decoration-color: var(--theme-a) !important;
+}
+
+/* Accent Hover Action States Mapping */
+.hover\:bg-\[\#e0521e\]:hover,
+.hover\:bg-\[\#e85a2a\]:hover,
+[class*="hover:bg-[#e0521e]"]:hover,
+[class*="hover:bg-[#e85a2a]"]:hover {
+  background-color: var(--theme-ah) !important;
+}
+
+/* Light BG & Complex Opacities Mapping for Background Accent Overlays */
+.bg-\[\#E6F3FF\],
+[class*="bg-[#E6F3FF]"] {
+  background-color: var(--theme-lbg) !important;
+}
+
+[class*="bg-[#E6F3FF]/20"] {
+  background-color: rgba(var(--theme-lbg-rgb), 0.20) !important;
+}
+
+[class*="bg-[#E6F3FF]/25"] {
+  background-color: rgba(var(--theme-lbg-rgb), 0.25) !important;
+}
+
+[class*="bg-[#E6F3FF]/30"] {
+  background-color: rgba(var(--theme-lbg-rgb), 0.30) !important;
+}
+
+[class*="bg-[#E6F3FF]/35"] {
+  background-color: rgba(var(--theme-lbg-rgb), 0.35) !important;
+}
+
+[class*="bg-[#E6F3FF]/40"] {
+  background-color: rgba(var(--theme-lbg-rgb), 0.40) !important;
+}
+
+[class*="bg-[#E6F3FF]/45"] {
+  background-color: rgba(var(--theme-lbg-rgb), 0.45) !important;
+}
+
+[class*="bg-[#E6F3FF]/50"] {
+  background-color: rgba(var(--theme-lbg-rgb), 0.50) !important;
 }
 

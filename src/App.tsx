@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomeView from './components/HomeView';
@@ -13,10 +13,24 @@ import ApproachView from './components/ApproachView';
 import IndustriesView from './components/IndustriesView';
 import ImpactView from './components/ImpactView';
 import ContactView from './components/ContactView';
+import ThemeSelector from './components/ThemeSelector';
 
 export default function App() {
   const [view, setView] = useState('home');
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('maynit-theme') || 'classic';
+  });
+
+  useEffect(() => {
+    const root = document.documentElement;
+    // Clear and establish active theme stylesheet hook
+    root.classList.remove('theme-classic', 'theme-emerald', 'theme-obsidian');
+    if (theme !== 'classic') {
+      root.classList.add(`theme-${theme}`);
+    }
+    localStorage.setItem('maynit-theme', theme);
+  }, [theme]);
 
   const renderActiveView = () => {
     switch (view) {
@@ -62,6 +76,9 @@ export default function App() {
 
       {/* Sustainable Foot Section */}
       <Footer setView={setView} />
+
+      {/* Persistent Floating Theme Selection Tool */}
+      <ThemeSelector currentTheme={theme} onThemeChange={setTheme} />
     </div>
   );
 }
