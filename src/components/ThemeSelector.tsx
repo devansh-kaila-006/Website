@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { Palette, Check, Shield, TrendingUp, Moon } from 'lucide-react';
+import { Palette, Check, Shield, TrendingUp, Moon, Flame, Compass, Crown, Zap, Activity, Briefcase, Snowflake } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface ThemeSelectorProps {
@@ -43,6 +43,55 @@ export default function ThemeSelector({ currentTheme, onThemeChange }: ThemeSele
       description: 'Slate Noir & Violet Elite',
       icon: Moon,
       colors: ['bg-[#0F172A]', 'bg-[#8B5CF6]']
+    },
+    {
+      id: 'crimson',
+      name: 'Executive Crimson',
+      description: 'Maroon & Gold Saffron',
+      icon: Flame,
+      colors: ['bg-[#7F1D1D]', 'bg-[#D97706]']
+    },
+    {
+      id: 'oceanic',
+      name: 'Oceanic Modernism',
+      description: 'Deep Teal & Coral Orange',
+      icon: Compass,
+      colors: ['bg-[#115E59]', 'bg-[#F97316]']
+    },
+    {
+      id: 'imperial',
+      name: 'Imperial Velvet',
+      description: 'Royal Purple & Saffron Gold',
+      icon: Crown,
+      colors: ['bg-[#4C1D95]', 'bg-[#F59E0B]']
+    },
+    {
+      id: 'steel',
+      name: 'Industrial Steel',
+      description: 'Steel Slate & Ignite Crimson',
+      icon: Zap,
+      colors: ['bg-[#334155]', 'bg-[#EF4444]']
+    },
+    {
+      id: 'forest',
+      name: 'Tactical Forest',
+      description: 'Spruce Pine & Sandstone Gold',
+      icon: Activity,
+      colors: ['bg-[#14532D]', 'bg-[#EAB308]']
+    },
+    {
+      id: 'corporate',
+      name: 'Silicon Enterprise',
+      description: 'Enterprise Royal & Cyber Cyan',
+      icon: Briefcase,
+      colors: ['bg-[#1E3A8A]', 'bg-[#06B6D4]']
+    },
+    {
+      id: 'nordic',
+      name: 'Nordic Winter Rose',
+      description: 'Deep Indigo & Arctic Rose',
+      icon: Snowflake,
+      colors: ['bg-[#1E1B4B]', 'bg-[#FB7185]']
     }
   ];
 
@@ -55,7 +104,7 @@ export default function ThemeSelector({ currentTheme, onThemeChange }: ThemeSele
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 15, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="mb-3 w-64 bg-white border border-slate-200 rounded shadow-xl p-3 space-y-2 text-left"
+            className="mb-3 w-72 bg-white border border-slate-200 rounded shadow-xl p-3 space-y-2 text-left"
           >
             <div className="px-2 pb-1.5 border-b border-slate-100 flex items-center justify-between">
               <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-slate-400 flex items-center gap-1">
@@ -63,11 +112,11 @@ export default function ThemeSelector({ currentTheme, onThemeChange }: ThemeSele
                 Select Workspace Theme
               </span>
               <span className="text-[8px] font-mono bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded uppercase font-bold">
-                Options
+                10 Palette Choices
               </span>
             </div>
 
-            <div className="space-y-1">
+            <div className="space-y-1 max-h-80 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-slate-200">
               {themes.map((themeOption) => {
                 const isActive = currentTheme === themeOption.id;
                 const Icon = themeOption.icon;
