@@ -26,24 +26,6 @@
     --theme-lbg-rgb: 236, 253, 245;
   }
 
-  :root.theme-obsidian {
-    --theme-p: #0F172A; /* Slate Charcoal Dark */
-    --theme-s: #475569; /* Slate Light */
-    --theme-a: #8B5CF6; /* Royal Indigo-Purple */
-    --theme-ah: #7C3AED;
-    --theme-lbg: #F8FAFC;
-    --theme-lbg-rgb: 248, 250, 252;
-  }
-
-  :root.theme-crimson {
-    --theme-p: #7F1D1D; /* Executive Crimson */
-    --theme-s: #991B1B; /* Rich Maroon */
-    --theme-a: #D97706; /* Elite Saffron/Amber Gold */
-    --theme-ah: #B45309;
-    --theme-lbg: #FEF2F2;
-    --theme-lbg-rgb: 254, 242, 242;
-  }
-
   :root.theme-oceanic {
     --theme-p: #115E59; /* Oceanic Deep Teal */
     --theme-s: #0D9488; /* Fresh Sea/Teal */
@@ -53,27 +35,9 @@
     --theme-lbg-rgb: 240, 253, 250;
   }
 
-  :root.theme-imperial {
-    --theme-p: #4C1D95; /* Royal Velvet Purple */
-    --theme-s: #6D28D9; /* Medium Royal Violet */
-    --theme-a: #F59E0B; /* Vivid Imperial Sunburst Saffron */
-    --theme-ah: #D97706;
-    --theme-lbg: #F5F3FF;
-    --theme-lbg-rgb: 245, 243, 255;
-  }
-
-  :root.theme-steel {
-    --theme-p: #334155; /* Industrial Steel Slate */
-    --theme-s: #64748B; /* Medium Cool Slate */
-    --theme-a: #EF4444; /* Ignite Crimson Red */
-    --theme-ah: #DC2626;
-    --theme-lbg: #F1F5F9;
-    --theme-lbg-rgb: 241, 245, 249;
-  }
-
   :root.theme-forest {
     --theme-p: #14532D; /* Deep Spruce Pine */
-    --theme-s: #1B2A1E; /* Deep Forest Moss Accent Background */
+    --theme-s: #193A24; /* Deep Forest Moss Accent */
     --theme-a: #EAB308; /* Sandstone Ochre Yellow */
     --theme-ah: #CA8A04;
     --theme-lbg: #F0FDF4;

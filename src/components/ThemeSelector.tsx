@@ -40,75 +40,49 @@ export default function ThemeSelector({
   }, []);
 
   const themes = [
+    // === BLUE PRIMARY PALETTES ===
     {
       id: 'classic',
-      name: 'Classic Executive',
-      description: 'Navy Blue & Coral Accent',
+      name: 'Classic Navy Blue',
+      description: 'Executive Navy & Coral Saffron',
       icon: Shield,
       colors: ['bg-[#003366]', 'bg-[#FF6B35]']
     },
     {
-      id: 'emerald',
-      name: 'Emerald Wealth',
-      description: 'Forest Deep & Royal Gold',
-      icon: TrendingUp,
-      colors: ['bg-[#0F4C43]', 'bg-[#D97706]']
-    },
-    {
-      id: 'obsidian',
-      name: 'Midnight Obsidian',
-      description: 'Slate Noir & Violet Elite',
-      icon: Moon,
-      colors: ['bg-[#0F172A]', 'bg-[#8B5CF6]']
-    },
-    {
-      id: 'crimson',
-      name: 'Executive Crimson',
-      description: 'Maroon & Gold Saffron',
-      icon: Flame,
-      colors: ['bg-[#7F1D1D]', 'bg-[#D97706]']
-    },
-    {
-      id: 'oceanic',
-      name: 'Oceanic Modernism',
-      description: 'Deep Teal & Coral Orange',
-      icon: Compass,
-      colors: ['bg-[#115E59]', 'bg-[#F97316]']
-    },
-    {
-      id: 'imperial',
-      name: 'Imperial Velvet',
-      description: 'Royal Purple & Saffron Gold',
-      icon: Crown,
-      colors: ['bg-[#4C1D95]', 'bg-[#F59E0B]']
-    },
-    {
-      id: 'steel',
-      name: 'Industrial Steel',
-      description: 'Steel Slate & Ignite Crimson',
-      icon: Zap,
-      colors: ['bg-[#334155]', 'bg-[#EF4444]']
-    },
-    {
-      id: 'forest',
-      name: 'Tactical Forest',
-      description: 'Spruce Pine & Sandstone Gold',
-      icon: Activity,
-      colors: ['bg-[#14532D]', 'bg-[#EAB308]']
-    },
-    {
       id: 'corporate',
-      name: 'Silicon Enterprise',
-      description: 'Enterprise Royal & Cyber Cyan',
+      name: 'Telecom Cobalt Blue',
+      description: 'Enterprise Blue & Innovation Cyan',
       icon: Briefcase,
       colors: ['bg-[#1E3A8A]', 'bg-[#06B6D4]']
     },
     {
       id: 'nordic',
-      name: 'Nordic Winter Rose',
-      description: 'Deep Indigo & Arctic Rose',
+      name: 'Glacier Midnight Indigo',
+      description: 'Deep Indigo & Arctic Rose Pink',
       icon: Snowflake,
       colors: ['bg-[#1E1B4B]', 'bg-[#FB7185]']
+    },
+    // === GREEN PRIMARY PALETTES ===
+    {
+      id: 'emerald',
+      name: 'Emerald Wealth Green',
+      description: 'Royal Forest Deep & Rich Amber Gold',
+      icon: TrendingUp,
+      colors: ['bg-[#0F4C43]', 'bg-[#D97706]']
+    },
+    {
+      id: 'forest',
+      name: 'Tactical Spruce Green',
+      description: 'Spruce Pine Green & Ochre Yellow',
+      icon: Activity,
+      colors: ['bg-[#14532D]', 'bg-[#EAB308]']
+    },
+    {
+      id: 'oceanic',
+      name: 'Nordic Ocean Teal',
+      description: 'Deep Sea Teal & Coral Orange',
+      icon: Compass,
+      colors: ['bg-[#115E59]', 'bg-[#F97316]']
     }
   ];
 
