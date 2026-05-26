@@ -193,7 +193,7 @@ export default function ApproachView({ setView }: ApproachViewProps) {
             <div className="space-y-4">
               <div className="flex items-center space-x-2 text-[10px] font-extrabold text-[#FF6B35] uppercase font-mono tracking-wider">
                 <Target className="h-4 w-4" />
-                <span>Impact Framework</span>
+                <span>Methodology Framework</span>
               </div>
               
               <h4 className="text-base font-extrabold tracking-tight text-white leading-snug">
@@ -215,29 +215,9 @@ export default function ApproachView({ setView }: ApproachViewProps) {
                 </div>
               </div>
             </div>
-
-            {relatedCS.quote && (
-              <div className="p-3 bg-white/5 rounded border border-white/10 italic text-[11px] text-slate-200 space-y-2 mt-4 text-left">
-                <p className="leading-relaxed">"{relatedCS.quote.text}"</p>
-                <p className="font-mono text-[9px] text-white/55 text-right leading-none">— {relatedCS.quote.author}, {relatedCS.quote.role}</p>
-              </div>
-            )}
           </div>
 
         </div>
-      </section>
-
-      {/* BOTTOM ACTION */}
-      <section className="bg-slate-50 border-y border-slate-150 py-12 text-center max-w-7xl mx-auto px-4">
-        <h3 className="text-xl md:text-2xl font-extrabold text-[#003366] tracking-tight">Evaluate Operational Case Studies & Metrics</h3>
-        <p className="text-[10px] font-mono text-slate-550 mt-1 uppercase tracking-widest font-semibold">See how we verify bottom-line benefits across global locations</p>
-        <button
-          id="approach-to-impact-btn"
-          onClick={() => { setView('impact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className="mt-5 px-6 py-3 bg-[#FF6B35] hover:bg-[#e85a2a] text-white text-xs font-bold uppercase tracking-widest rounded shadow transition-all duration-200 focus:outline-none"
-        >
-          View Impact & Results
-        </button>
       </section>
 
     </div>

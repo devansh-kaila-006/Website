@@ -11,7 +11,6 @@ import AboutView from './components/AboutView';
 import ServicesView from './components/ServicesView';
 import ApproachView from './components/ApproachView';
 import IndustriesView from './components/IndustriesView';
-import ImpactView from './components/ImpactView';
 import ContactView from './components/ContactView';
 
 export default function App() {
@@ -46,8 +45,6 @@ export default function App() {
             setSelectedServiceId={setSelectedServiceId}
           />
         );
-      case 'impact':
-        return <ImpactView setView={setView} />;
       case 'contact':
         return <ContactView />;
       default:

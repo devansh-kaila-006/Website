@@ -117,7 +117,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
               <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
                 <div className="flex items-center space-x-2">
                   <div className="h-2 w-2 rounded-sm bg-[#FF6B35]"></div>
-                  <span className="text-xxs font-extrabold text-[#003366] uppercase tracking-widest font-mono">Live Impact Tracker</span>
+                  <span className="text-xxs font-extrabold text-[#003366] uppercase tracking-widest font-mono">Live Benchmark Tracker</span>
                 </div>
                 <span className="text-[9px] text-slate-400 uppercase font-mono font-bold tracking-tight">Verified Benchmarks</span>
               </div>
@@ -155,7 +155,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
                 <div className="relative">
                   <div className="w-8 h-[2px] bg-[#FF6B35] mx-auto mb-2"></div>
                   <p className="text-xxs text-slate-100 leading-relaxed font-medium italic">
-                    "Transforming complexity into clarity. Driving measurable impact."
+                    "Transforming complexity into clarity. Driving measurable performance."
                   </p>
                 </div>
               </div>
@@ -231,7 +231,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             <div className="space-y-2 text-left">
               <span className="text-xxs font-bold text-[#FF6B35] uppercase tracking-wider block mb-1">WHAT WE SPECIALIZE IN</span>
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[#003366] tracking-tight">
-                High-Impact Advisory Solutions (7)
+                Process Advisory Solutions (7)
               </h3>
             </div>
             <button

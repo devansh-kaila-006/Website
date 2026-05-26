@@ -33,7 +33,6 @@ export default function Header({ currentView, setView }: HeaderProps) {
     { id: 'services', label: 'Services' },
     { id: 'approach', label: 'Our Approach' },
     { id: 'industries', label: 'Industries' },
-    { id: 'impact', label: 'Impact & Results' },
     { id: 'contact', label: 'Contact' },
   ];
 

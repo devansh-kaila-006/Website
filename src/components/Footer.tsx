@@ -131,16 +131,6 @@ export default function Footer({ setView }: FooterProps) {
                   <span>Industries Served</span>
                 </button>
               </li>
-              <li>
-                <button
-                  id="footer-link-impact"
-                  onClick={() => handleNav('impact')}
-                  className="hover:text-[#FF6B35] transition-colors inline-flex items-center space-x-1"
-                >
-                  <ChevronRight className="h-3 w-3 text-[#FF6B35]" />
-                  <span>Client Case Studies</span>
-                </button>
-              </li>
             </ul>
           </div>
 
@@ -156,17 +146,16 @@ export default function Footer({ setView }: FooterProps) {
                 Ludhiana, Punjab, India
               </p>
             </div>
-            <div className="flex items-center space-x-2.5">
-              <Mail className="h-4.5 w-4.5 text-[#FF6B35] shrink-0" />
-              <a href="mailto:consulting@maynit.com" className="hover:text-[#FF6B35] transition-colors text-slate-300">
-                consulting@maynit.com
-              </a>
-            </div>
-            <div className="flex items-center space-x-2.5">
-              <Phone className="h-4.5 w-4.5 text-[#FF6B35] shrink-0" />
-              <a href="tel:+911615030198" className="hover:text-[#FF6B35] transition-colors text-slate-300">
-                +91 (161) 503-0198
-              </a>
+            <div className="flex items-start space-x-2.5">
+              <Phone className="h-4.5 w-4.5 text-[#FF6B35] shrink-0 mt-0.5" />
+              <div className="space-y-1.5 flex flex-col text-slate-300 text-sm">
+                <a href="tel:+919872422589" className="hover:text-[#FF6B35] transition-colors">
+                  +91 98724 22589
+                </a>
+                <a href="tel:+917069010057" className="hover:text-[#FF6B35] transition-colors">
+                  +91 70690 10057
+                </a>
+              </div>
             </div>
           </div>
 

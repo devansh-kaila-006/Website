@@ -328,18 +328,16 @@ export default function ContactView() {
                   </p>
                 </div>
                 
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-4.5 w-4.5 text-[#0066CC] shrink-0" />
-                  <a href="mailto:consulting@maynit.com" className="text-[#0066CC] hover:underline">
-                    consulting@maynit.com
-                  </a>
-                </div>
-
-                <div className="flex items-center space-x-3">
-                  <Phone className="h-4.5 w-4.5 text-[#0066CC] shrink-0" />
-                  <a href="tel:+911615030198" className="text-[#003366] hover:underline">
-                    +91 (161) 503-0198
-                  </a>
+                <div className="flex items-start space-x-3">
+                  <Phone className="h-4.5 w-4.5 text-[#0066CC] shrink-0 mt-0.5" />
+                  <div className="space-y-1 text-xs font-semibold leading-relaxed flex flex-col">
+                    <a href="tel:+919872422589" className="text-[#003366] hover:underline">
+                      +91 98724 22589
+                    </a>
+                    <a href="tel:+917069010057" className="text-[#003366] hover:underline">
+                      +91 70690 10057
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
