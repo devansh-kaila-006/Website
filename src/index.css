@@ -157,15 +157,9 @@
 :root.template-editorial .bg-white,
 :root.template-editorial .bg-slate-50 {
   background-color: #FFFCF8 !important;
-  border: none !important;
-  border-radius: 0px !important;
-  box-shadow: none !important;
-}
-
-:root.template-editorial .border:not(input, textarea, button),
-:root.template-editorial [class*="border-slate-"]:not(input, textarea, button),
-:root.template-editorial [class*="border-gray-"]:not(input, textarea, button) {
-  border-color: transparent !important;
+  border: 1px solid #E6D9C5 !important;
+  border-radius: 3px !important;
+  box-shadow: 0 6px 20px -10px rgba(110, 90, 70, 0.12) !important;
 }
 
 :root.template-editorial button,
