@@ -151,10 +151,11 @@
   letter-spacing: -0.02em !important;
 }
 
+:root.template-editorial [class~="bg-white"],
+:root.template-editorial [class~="bg-slate-50"],
+:root.template-editorial [class~="bg-[#E6F3FF]"],
 :root.template-editorial .bg-white,
-:root.template-editorial [class*="bg-slate-50"],
-:root.template-editorial [class*="bg-white"],
-:root.template-editorial [class*="bg-[#E6F3FF]"] {
+:root.template-editorial .bg-slate-50 {
   background-color: #FFFCF8 !important;
   border: 1px solid #E6D9C5 !important;
   border-radius: 3px !important;
