@@ -9,57 +9,48 @@
 
 @layer base {
   :root {
-    --theme-p: #003366;
-    --theme-s: #0066CC;
-    --theme-a: #FF6B35;
-    --theme-ah: #e85a2a;
-    --theme-lbg: #E6F3FF;
-    --theme-lbg-rgb: 230, 243, 255;
-  }
-
-  :root.theme-emerald {
-    --theme-p: #0F4C43; /* Deep Emerald */
-    --theme-s: #047857; /* Rich Sage Green */
-    --theme-a: #D97706; /* Premium Amber/Gold */
-    --theme-ah: #B45309;
-    --theme-lbg: #ECFDF5;
-    --theme-lbg-rgb: 236, 253, 245;
-  }
-
-  :root.theme-oceanic {
-    --theme-p: #115E59; /* Oceanic Deep Teal */
-    --theme-s: #0D9488; /* Fresh Sea/Teal */
-    --theme-a: #F97316; /* Energetic Coral Orange */
+    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
+    --theme-s: #0D9488; /* Glacier Ocean Teal */
+    --theme-a: #F97316; /* Nordic Coral Orange */
     --theme-ah: #EA580C;
     --theme-lbg: #F0FDFA;
     --theme-lbg-rgb: 240, 253, 250;
   }
 
-  :root.theme-forest {
-    --theme-p: #14532D; /* Deep Spruce Pine */
-    --theme-s: #193A24; /* Deep Forest Moss Accent */
-    --theme-a: #EAB308; /* Sandstone Ochre Yellow */
-    --theme-ah: #CA8A04;
-    --theme-lbg: #F0FDF4;
-    --theme-lbg-rgb: 240, 253, 244;
+  :root.theme-amber {
+    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
+    --theme-s: #0F766E; /* Muted Pine Green */
+    --theme-a: #D97706; /* Baltic Amber Gold */
+    --theme-ah: #B45309;
+    --theme-lbg: #F2FBF9;
+    --theme-lbg-rgb: 242, 251, 249;
   }
 
-  :root.theme-corporate {
-    --theme-p: #1E3A8A; /* Enterprise Royal Blue */
-    --theme-s: #2563EB; /* High-Stakes Cobalt Blue */
-    --theme-a: #06B6D4; /* Innovation Cyber Cyan */
-    --theme-ah: #0891B2;
-    --theme-lbg: #EFF6FF;
-    --theme-lbg-rgb: 239, 246, 255;
-  }
-
-  :root.theme-nordic {
-    --theme-p: #1E1B4B; /* Deep Indigo Midnight */
-    --theme-s: #818CF8; /* Glacier Periwinkle */
+  :root.theme-rose {
+    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
+    --theme-s: #14B8A6; /* Glacier Water Aqua */
     --theme-a: #FB7185; /* Arctic Rose Pink */
     --theme-ah: #F43F5E;
     --theme-lbg: #FFF1F2;
     --theme-lbg-rgb: 255, 241, 242;
+  }
+
+  :root.theme-sky {
+    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
+    --theme-s: #0369A1; /* Deep Sky Blue */
+    --theme-a: #38BDF8; /* Glacier Periwinkle Sky */
+    --theme-ah: #0EA5E9;
+    --theme-lbg: #F0F9FF;
+    --theme-lbg-rgb: 240, 249, 255;
+  }
+
+  :root.theme-mint {
+    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
+    --theme-s: #059669; /* Forest Mint Green */
+    --theme-a: #34D399; /* Frozen Mint Soft Accent */
+    --theme-ah: #059669;
+    --theme-lbg: #ECFDF5;
+    --theme-lbg-rgb: 236, 253, 245;
   }
 
   body {

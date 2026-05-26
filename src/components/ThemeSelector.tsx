@@ -40,49 +40,40 @@ export default function ThemeSelector({
   }, []);
 
   const themes = [
-    // === BLUE PRIMARY PALETTES ===
     {
       id: 'classic',
-      name: 'Classic Navy Blue',
-      description: 'Executive Navy & Coral Saffron',
-      icon: Shield,
-      colors: ['bg-[#003366]', 'bg-[#FF6B35]']
-    },
-    {
-      id: 'corporate',
-      name: 'Telecom Cobalt Blue',
-      description: 'Enterprise Blue & Innovation Cyan',
-      icon: Briefcase,
-      colors: ['bg-[#1E3A8A]', 'bg-[#06B6D4]']
-    },
-    {
-      id: 'nordic',
-      name: 'Glacier Midnight Indigo',
-      description: 'Deep Indigo & Arctic Rose Pink',
-      icon: Snowflake,
-      colors: ['bg-[#1E1B4B]', 'bg-[#FB7185]']
-    },
-    // === GREEN PRIMARY PALETTES ===
-    {
-      id: 'emerald',
-      name: 'Emerald Wealth Green',
-      description: 'Royal Forest Deep & Rich Amber Gold',
-      icon: TrendingUp,
-      colors: ['bg-[#0F4C43]', 'bg-[#D97706]']
-    },
-    {
-      id: 'forest',
-      name: 'Tactical Spruce Green',
-      description: 'Spruce Pine Green & Ochre Yellow',
-      icon: Activity,
-      colors: ['bg-[#14532D]', 'bg-[#EAB308]']
-    },
-    {
-      id: 'oceanic',
-      name: 'Nordic Ocean Teal',
-      description: 'Deep Sea Teal & Coral Orange',
+      name: 'Atlantic Coral',
+      description: 'Deep Sea Teal & Coral Saffron',
       icon: Compass,
       colors: ['bg-[#115E59]', 'bg-[#F97316]']
+    },
+    {
+      id: 'amber',
+      name: 'Baltic Gold',
+      description: 'Deep Sea Teal & Baltic Amber Gold',
+      icon: TrendingUp,
+      colors: ['bg-[#115E59]', 'bg-[#D97706]']
+    },
+    {
+      id: 'rose',
+      name: 'Arctic Rose',
+      description: 'Deep Sea Teal & Glacier Rose Pink',
+      icon: Snowflake,
+      colors: ['bg-[#115E59]', 'bg-[#FB7185]']
+    },
+    {
+      id: 'sky',
+      name: 'Glacier Sky',
+      description: 'Deep Sea Teal & Sky Periwinkle',
+      icon: Compass,
+      colors: ['bg-[#115E59]', 'bg-[#38BDF8]']
+    },
+    {
+      id: 'mint',
+      name: 'Frozen Mint',
+      description: 'Deep Sea Teal & Ice Mint Green',
+      icon: Activity,
+      colors: ['bg-[#115E59]', 'bg-[#34D399]']
     }
   ];
 
