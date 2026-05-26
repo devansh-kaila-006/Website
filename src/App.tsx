@@ -21,9 +21,6 @@ export default function App() {
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem('maynit-theme') || 'classic';
   });
-  const [template, setTemplate] = useState(() => {
-    return localStorage.getItem('maynit-template') || 'classic';
-  });
 
   useEffect(() => {
     const root = document.documentElement;
@@ -37,13 +34,11 @@ export default function App() {
     if (theme !== 'classic') {
       root.classList.add(`theme-${theme}`);
     }
-    if (template !== 'classic') {
-      root.classList.add(`template-${template}`);
-    }
+    // Permanently fixed to Nordic Editorial layout for editorial premium branding
+    root.classList.add('template-editorial');
 
     localStorage.setItem('maynit-theme', theme);
-    localStorage.setItem('maynit-template', template);
-  }, [theme, template]);
+  }, [theme]);
 
   const renderActiveView = () => {
     switch (view) {
@@ -90,12 +85,10 @@ export default function App() {
       {/* Sustainable Foot Section */}
       <Footer setView={setView} />
 
-      {/* Persistent Floating Theme & Layout Template Selection Tool */}
+      {/* Persistent Floating Theme Selection Tool */}
       <ThemeSelector 
         currentTheme={theme} 
         onThemeChange={setTheme} 
-        currentTemplate={template} 
-        onTemplateChange={setTemplate} 
       />
     </div>
   );

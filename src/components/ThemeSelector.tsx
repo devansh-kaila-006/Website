@@ -1,26 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
 import { 
   Palette, Check, Shield, TrendingUp, Moon, Flame, Compass, 
-  Crown, Zap, Activity, Briefcase, Snowflake, Square, 
-  BookOpen, Sparkles, Cpu, Settings, Grid, Layers, CreditCard
+  Crown, Zap, Activity, Briefcase, Snowflake, Settings
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface ThemeSelectorProps {
   currentTheme: string;
   onThemeChange: (theme: string) => void;
-  currentTemplate: string;
-  onTemplateChange: (template: string) => void;
 }
 
 export default function ThemeSelector({ 
   currentTheme, 
-  onThemeChange, 
-  currentTemplate, 
-  onTemplateChange 
+  onThemeChange 
 }: ThemeSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'themes' | 'templates'>('themes');
   const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -118,39 +112,6 @@ export default function ThemeSelector({
     }
   ];
 
-  const templates = [
-    {
-      id: 'classic',
-      name: 'Classic Corporate',
-      description: 'Montserrat heading & Inter sans serif',
-      icon: Shield
-    },
-    {
-      id: 'stark',
-      name: 'Swiss Stark Minimalist',
-      description: 'Crisp hairline borders, zero shadows & Swiss grid spacing',
-      icon: Grid
-    },
-    {
-      id: 'editorial',
-      name: 'Nordic Editorial',
-      description: 'Luxury Playfair Display serif & warm page tones',
-      icon: BookOpen
-    },
-    {
-      id: 'fintech',
-      name: 'Sleek FinTech',
-      description: 'Clean sharp card compartments with bright brand rules',
-      icon: CreditCard
-    },
-    {
-      id: 'slate',
-      name: 'Modernist Slate',
-      description: 'Clean cool slate fill, subtle borders & elegant drop alignment',
-      icon: Layers
-    }
-  ];
-
   return (
     <div ref={menuRef}>
       <AnimatePresence>
@@ -187,9 +148,9 @@ export default function ThemeSelector({
 
               {/* Header description with responsive actions */}
               <div className="px-2 pb-2 border-b border-slate-100 flex items-center justify-between shrink-0">
-                <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-slate-400 flex items-center gap-1.5">
-                  <Settings className="h-3 w-3 text-slate-400 rotate-45" />
-                  WORKSPACE BRANDING
+                <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-[#003366] flex items-center gap-1.5">
+                  <Settings className="h-3 w-3 text-[#0066CC] rotate-45" />
+                  BRAND COLOR PALETTE
                 </span>
                 
                 {isMobile ? (
@@ -200,141 +161,72 @@ export default function ThemeSelector({
                     Close
                   </button>
                 ) : (
-                  <span className="text-[8px] font-mono bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded uppercase font-bold text-3xs">
-                    15 CONFIG OPTIONS
+                  <span className="text-[8px] font-mono bg-amber-50 text-amber-700 px-2 py-0.5 rounded uppercase font-bold text-3xs border border-amber-200">
+                    Nordic Layout
                   </span>
                 )}
               </div>
 
-              {/* Config Mode Switch Tabs (Higher tap-target height for mobile screens) */}
-              <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100/70 rounded-lg border border-slate-200/50 shrink-0">
-                <button
-                  onClick={() => setActiveTab('themes')}
-                  className={`flex items-center justify-center space-x-1.5 rounded font-bold text-[10px] uppercase tracking-wide transition-all duration-150 cursor-pointer ${
-                    isMobile ? 'py-2 px-3' : 'py-1.5 px-2'
-                  } ${
-                    activeTab === 'themes'
-                      ? 'bg-white text-[#003366] shadow-[0_1px_3px_rgba(0,0,0,0.05)] font-extrabold'
-                      : 'text-slate-500 hover:text-slate-900'
-                  }`}
-                >
-                  <Palette className="h-3 w-3" />
-                  <span>Palettes ({themes.length})</span>
-                </button>
-                <button
-                  onClick={() => setActiveTab('templates')}
-                  className={`flex items-center justify-center space-x-1.5 rounded font-bold text-[10px] uppercase tracking-wide transition-all duration-150 cursor-pointer ${
-                    isMobile ? 'py-2 px-3' : 'py-1.5 px-2'
-                  } ${
-                    activeTab === 'templates'
-                      ? 'bg-white text-[#003366] shadow-[0_1px_3px_rgba(0,0,0,0.05)] font-extrabold'
-                      : 'text-slate-500 hover:text-slate-900'
-                  }`}
-                >
-                  <Cpu className="h-3 w-3" />
-                  <span>Layouts ({templates.length})</span>
-                </button>
+              {/* Theme Subtitle */}
+              <div className="px-2 py-1.5 shrink-0">
+                <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider">
+                  Select Accent Palette:
+                </span>
               </div>
 
               {/* Option lists (Using overscroll-contain & larger touch padding optimized for fingers on phone) */}
               <div className={`space-y-1.5 overflow-y-auto pr-1 overscroll-contain scrollbar-thin scrollbar-thumb-slate-200 ${
                 isMobile ? 'flex-1 min-h-0 py-2.5' : 'max-h-80'
               }`}>
-                {activeTab === 'themes' ? (
-                  // THEME LISTING
-                  themes.map((themeOption) => {
-                    const isActive = currentTheme === themeOption.id;
-                    const Icon = themeOption.icon;
-                    return (
-                      <button
-                        key={themeOption.id}
-                        onClick={() => {
-                          onThemeChange(themeOption.id);
-                        }}
-                        className={`w-full flex items-center justify-between rounded-lg text-left transition-all duration-150 cursor-pointer border ${
-                          isMobile ? 'p-3' : 'p-2'
+                {themes.map((themeOption) => {
+                  const isActive = currentTheme === themeOption.id;
+                  const Icon = themeOption.icon;
+                  return (
+                    <button
+                      key={themeOption.id}
+                      onClick={() => {
+                        onThemeChange(themeOption.id);
+                      }}
+                      className={`w-full flex items-center justify-between rounded-lg text-left transition-all duration-150 cursor-pointer border ${
+                        isMobile ? 'p-3' : 'p-2'
+                      } ${
+                        isActive 
+                          ? 'bg-slate-50 border-slate-200/80 shadow-xxs' 
+                          : 'hover:bg-slate-50/50 border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className={`rounded-md flex items-center justify-center shrink-0 ${
+                          isMobile ? 'p-2' : 'p-1.5'
                         } ${
-                          isActive 
-                            ? 'bg-slate-50 border-slate-200/80 shadow-xxs' 
-                            : 'hover:bg-slate-50/50 border-transparent'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div className={`rounded-md flex items-center justify-center shrink-0 ${
-                            isMobile ? 'p-2' : 'p-1.5'
-                          } ${
-                            isActive ? 'bg-[#003366] text-white' : 'bg-slate-200 text-slate-600'
-                          }`}>
-                            <Icon className="h-3.5 w-3.5" />
+                          isActive ? 'bg-[#003366] text-white' : 'bg-slate-200 text-slate-600'
+                        }`}>
+                          <Icon className="h-3.5 w-3.5" />
+                        </div>
+                        <div>
+                          <div className="text-xs font-bold text-slate-800 leading-none">
+                            {themeOption.name}
                           </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-800 leading-none">
-                              {themeOption.name}
-                            </div>
-                            <div className="text-[9px] text-slate-400 mt-1 leading-none font-semibold">
-                              {themeOption.description}
-                            </div>
+                          <div className="text-[9px] text-slate-400 mt-1 leading-none font-semibold">
+                            {themeOption.description}
                           </div>
                         </div>
-                        
-                        <div className="flex items-center space-x-2 shrink-0">
-                          <div className="flex -space-x-1">
-                            <span className={`rounded-full border border-white ${
-                              isMobile ? 'h-3.5 w-3.5 border-1.5' : 'h-2.5 w-2.5'
-                            } ${themeOption.colors[0]}`} />
-                            <span className={`rounded-full border border-white ${
-                              isMobile ? 'h-3.5 w-3.5 border-1.5' : 'h-2.5 w-2.5'
-                            } ${themeOption.colors[1]}`} />
-                          </div>
-                          {isActive && <Check className="h-3 w-3.5 text-emerald-600 shrink-0" />}
+                      </div>
+                      
+                      <div className="flex items-center space-x-2 shrink-0">
+                        <div className="flex -space-x-1">
+                          <span className={`rounded-full border border-white ${
+                            isMobile ? 'h-3.5 w-3.5 border-1.5' : 'h-2.5 w-2.5'
+                          } ${themeOption.colors[0]}`} />
+                          <span className={`rounded-full border border-white ${
+                            isMobile ? 'h-3.5 w-3.5 border-1.5' : 'h-2.5 w-2.5'
+                          } ${themeOption.colors[1]}`} />
                         </div>
-                      </button>
-                    );
-                  })
-                ) : (
-                  // LAYOUT TEMPLATE LISTING
-                  templates.map((tmplOption) => {
-                    const isActive = currentTemplate === tmplOption.id;
-                    const Icon = tmplOption.icon;
-                    return (
-                      <button
-                        key={tmplOption.id}
-                        onClick={() => {
-                          onTemplateChange(tmplOption.id);
-                        }}
-                        className={`w-full flex items-center justify-between rounded-lg text-left transition-all duration-150 cursor-pointer border ${
-                          isMobile ? 'p-3' : 'p-2'
-                        } ${
-                          isActive 
-                            ? 'bg-slate-50 border-slate-200/80 shadow-xxs' 
-                            : 'hover:bg-slate-50/50 border-transparent'
-                        }`}
-                      >
-                        <div className="flex items-center space-x-3">
-                          <div className={`rounded-md flex items-center justify-center shrink-0 ${
-                            isMobile ? 'p-2' : 'p-1.5'
-                          } ${
-                            isActive ? 'bg-[#003366] text-white' : 'bg-slate-200 text-slate-600'
-                          }`}>
-                            <Icon className="h-3.5 w-3.5" />
-                          </div>
-                          <div>
-                            <div className="text-xs font-bold text-slate-800 leading-none">
-                              {tmplOption.name}
-                            </div>
-                            <div className="text-[9px] text-slate-400 mt-1.5 leading-snug font-semibold">
-                              {tmplOption.description}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center shrink-0">
-                          {isActive && <Check className="h-3 w-3.5 text-emerald-600 shrink-0" />}
-                        </div>
-                      </button>
-                    );
-                  })
-                )}
+                        {isActive && <Check className="h-3 w-3.5 text-emerald-600 shrink-0" />}
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </motion.div>
           </>
@@ -348,7 +240,7 @@ export default function ThemeSelector({
           className={`bg-[#003366] hover:bg-[#003366]/90 hover:scale-105 active:scale-95 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer border border-white/10 group focus:outline-none ${
             isMobile ? 'h-14 w-14' : 'h-12 w-12'
           }`}
-          title="Toggle Brand Themes & Templates"
+          title="Toggle Accent Palette"
         >
           <Palette className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} group-hover:rotate-12 transition-transform duration-300`} />
         </button>
