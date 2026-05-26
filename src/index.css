@@ -10,47 +10,11 @@
 @layer base {
   :root {
     --theme-p: #115E59; /* Deep Sea Teal (Primary) */
-    --theme-s: #0D9488; /* Glacier Ocean Teal */
-    --theme-a: #F97316; /* Nordic Coral Orange */
-    --theme-ah: #EA580C;
-    --theme-lbg: #F0FDFA;
-    --theme-lbg-rgb: 240, 253, 250;
-  }
-
-  :root.theme-amber {
-    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
     --theme-s: #0F766E; /* Muted Pine Green */
     --theme-a: #D97706; /* Baltic Amber Gold */
     --theme-ah: #B45309;
     --theme-lbg: #F2FBF9;
     --theme-lbg-rgb: 242, 251, 249;
-  }
-
-  :root.theme-rose {
-    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
-    --theme-s: #14B8A6; /* Glacier Water Aqua */
-    --theme-a: #FB7185; /* Arctic Rose Pink */
-    --theme-ah: #F43F5E;
-    --theme-lbg: #FFF1F2;
-    --theme-lbg-rgb: 255, 241, 242;
-  }
-
-  :root.theme-sky {
-    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
-    --theme-s: #0369A1; /* Deep Sky Blue */
-    --theme-a: #38BDF8; /* Glacier Periwinkle Sky */
-    --theme-ah: #0EA5E9;
-    --theme-lbg: #F0F9FF;
-    --theme-lbg-rgb: 240, 249, 255;
-  }
-
-  :root.theme-mint {
-    --theme-p: #115E59; /* Deep Sea Teal (Primary) */
-    --theme-s: #059669; /* Forest Mint Green */
-    --theme-a: #34D399; /* Frozen Mint Soft Accent */
-    --theme-ah: #059669;
-    --theme-lbg: #ECFDF5;
-    --theme-lbg-rgb: 236, 253, 245;
   }
 
   body {

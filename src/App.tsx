@@ -13,32 +13,15 @@ import ApproachView from './components/ApproachView';
 import IndustriesView from './components/IndustriesView';
 import ImpactView from './components/ImpactView';
 import ContactView from './components/ContactView';
-import ThemeSelector from './components/ThemeSelector';
 
 export default function App() {
   const [view, setView] = useState('home');
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('maynit-theme') || 'classic';
-  });
 
   useEffect(() => {
     const root = document.documentElement;
-    
-    // Clear previously configured theme or template classes on root element
-    const classesToRemove = Array.from(root.classList).filter(
-      (className) => className.startsWith('theme-') || className.startsWith('template-')
-    );
-    classesToRemove.forEach((className) => root.classList.remove(className));
-
-    if (theme !== 'classic') {
-      root.classList.add(`theme-${theme}`);
-    }
-    // Permanently fixed to Nordic Editorial layout for editorial premium branding
     root.classList.add('template-editorial');
-
-    localStorage.setItem('maynit-theme', theme);
-  }, [theme]);
+  }, []);
 
   const renderActiveView = () => {
     switch (view) {
@@ -84,12 +67,6 @@ export default function App() {
 
       {/* Sustainable Foot Section */}
       <Footer setView={setView} />
-
-      {/* Persistent Floating Theme Selection Tool */}
-      <ThemeSelector 
-        currentTheme={theme} 
-        onThemeChange={setTheme} 
-      />
     </div>
   );
 }
