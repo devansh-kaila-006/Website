@@ -72,16 +72,16 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
               <span>MANAGEMENT CONSULTING PARTNER</span>
             </span>
             
-            <h1 className="text-4xl sm:text-5xl lg:text-5.5xl font-extrabold tracking-tight text-[#003366] leading-[1.1]">
-              Driving Business, System & <br/><span className="text-[#0066CC]">Process Excellence</span>
+            <h1 className="text-3xl sm:text-5xl lg:text-5.5xl font-extrabold tracking-tight text-[#003366] leading-[1.15] sm:leading-[1.1]">
+              Driving Business, System & <br className="hidden sm:inline" /><span className="text-[#0066CC]">Process Excellence</span>
             </h1>
             
             <p className="text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-xl">
               Enabling partner organizations to achieve operations efficiency, permanent cost leadership, and sustainable market expansion through structured process transformation, workforce alignment, and technology integration.
             </p>
-
-            {/* Premium Clean Minimalism Stats Strip */}
-            <div className="flex gap-4 pt-1">
+ 
+            {/* Premium Clean Minimalism Stats Strip - Fully optimized for phone stacked layouts */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md w-full pt-1">
               <div className="bg-white px-5 py-3 rounded shadow-sm border border-slate-100 flex items-center gap-3">
                 <span className="text-2xl sm:text-3xl font-extrabold text-[#28A745]">↓30%</span>
                 <span className="text-[10px] uppercase tracking-wider font-semibold text-slate-400 font-mono leading-tight">Cost<br/>Reduction</span>
@@ -351,9 +351,9 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
               </p>
             </div>
             {APPROACH_STAGES[activeApproachStep].metric && (
-              <div className="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between">
+              <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                 <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider">Milestone target:</span>
-                <span className="text-xs font-bold text-[#28A745] bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-150">{APPROACH_STAGES[activeApproachStep].metric}</span>
+                <span className="text-xs font-bold text-[#28A745] bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-150 self-start sm:self-auto max-w-full text-left">{APPROACH_STAGES[activeApproachStep].metric}</span>
               </div>
             )}
           </div>

@@ -305,4 +305,39 @@
   box-shadow: 0 2px 8px -1px rgba(100, 116, 139, 0.06) !important;
 }
 
+/* ==========================================================================
+   CUSTOM ADVANCED CORPORATE SCROLLER STYLING
+   ========================================================================== */
+
+/* Modern scrollbar support for Webkit engines (Chrome, Edge, Safari, iOS, Android) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--theme-s, #0066CC);
+  border-radius: 12px;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--theme-p, #003366);
+}
+
+/* Firefox scrollbar support */
+@supports (scrollbar-color: auto) {
+  html, body, div, section {
+    scrollbar-color: var(--theme-s, #0066CC) transparent;
+    scrollbar-width: thin;
+  }
+}
+
+
 

@@ -114,7 +114,7 @@ export default function ApproachView({ setView }: ApproachViewProps) {
             <div className="space-y-6">
               
               {/* Header metrics */}
-              <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-4 gap-3">
                 <div className="flex items-center space-x-3">
                   <span className="text-[10px] font-mono bg-[#003366] text-white font-bold h-6 w-6 rounded-full flex items-center justify-center shrink-0">
                     {activeStage.number}
@@ -125,7 +125,7 @@ export default function ApproachView({ setView }: ApproachViewProps) {
                 </div>
                 
                 {activeStage.metric && (
-                  <span className="text-[9px] font-extrabold text-[#0066CC] bg-[#E6F3FF]/45 px-2.5 py-1 rounded border border-[#0066CC]/15 uppercase tracking-widest font-mono shrink-0">
+                  <span className="text-[9px] font-extrabold text-[#0066CC] bg-[#E6F3FF]/45 px-2.5 py-1 rounded border border-[#0066CC]/15 uppercase tracking-widest font-mono shrink-0 self-start sm:self-auto max-w-full text-center">
                     {activeStage.metric}
                   </span>
                 )}

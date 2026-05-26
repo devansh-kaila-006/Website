@@ -13,6 +13,34 @@ export default function AboutView({ setView }: AboutViewProps) {
     { title: 'Rapid Decision Velocity', desc: 'Implement flat reporting routines and standard escalations to clear issues immediately.' }
   ];
 
+  const comparisonData = [
+    {
+      parameter: 'Delivery Format',
+      traditional: '200-page theoretical slide binders for review.',
+      ourApproach: 'Tested pilots, live maps, and visual boards.'
+    },
+    {
+      parameter: 'Engagement Scope',
+      traditional: 'One-time remote discovery meeting & handover.',
+      ourApproach: 'Embedded floor-coaching plus weekly reviews.'
+    },
+    {
+      parameter: 'Framework Focus',
+      traditional: 'Boilerplate templates reused across client lists.',
+      ourApproach: 'Tailored designs respecting team and systems limits.'
+    },
+    {
+      parameter: 'Program Outcomes',
+      traditional: 'Strategy descriptions without active deployment rules.',
+      ourApproach: 'Strategy connected entirely to verified floor metrics.'
+    },
+    {
+      parameter: 'Capability Transfer',
+      traditional: 'Knowledge stays inside remote agency resource bases.',
+      ourApproach: 'Certified internal leads trained permanently.'
+    }
+  ];
+
   return (
     <div id="about-view-container" className="pt-24 space-y-16 pb-12">
       
@@ -175,73 +203,69 @@ export default function AboutView({ setView }: AboutViewProps) {
           </p>
         </div>
 
-        <div className="bg-white rounded border border-slate-200 overflow-hidden shadow-sm">
-          <table className="w-full text-left text-xs md:text-sm border-collapse">
-            <thead>
-              <tr className="bg-[#003366] text-white font-mono text-[10px] tracking-wider uppercase border-b border-slate-200">
-                <th className="p-4 w-1/3">Core Parameter</th>
-                <th className="p-4 w-1/3 text-slate-350">Traditional Consulting</th>
-                <th className="p-4 w-1/3 bg-[#002244] text-white font-black">Our Transformation Approach</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-200 text-xs font-semibold">
-              <tr>
-                <td className="p-4 font-extrabold text-[#003366] bg-slate-50/50">Delivery Format</td>
-                <td className="p-4 text-slate-500 flex items-center space-x-2">
-                  <X className="h-4 w-4 text-red-500 shrink-0" />
-                  <span>200-page theoretical slide binders for review.</span>
-                </td>
-                <td className="p-4 bg-[#E6F3FF]/20 text-[#003366] font-bold flex items-center space-x-2">
-                  <Check className="h-4 w-4 text-[#28A745] shrink-0" />
-                  <span>Tested pilots, live maps, and visual boards.</span>
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-extrabold text-[#003366] bg-slate-50/50">Engagement Scope</td>
-                <td className="p-4 text-slate-500 flex items-center space-x-2">
-                  <X className="h-4 w-4 text-red-500 shrink-0" />
-                  <span>One-time remote discovery meeting & handover.</span>
-                </td>
-                <td className="p-4 bg-[#E6F3FF]/20 text-[#003366] font-bold flex items-center space-x-2">
-                  <Check className="h-4 w-4 text-[#28A745] shrink-0" />
-                  <span>Embedded floor-coaching plus weekly reviews.</span>
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-extrabold text-[#003366] bg-slate-50/50">Framework Focus</td>
-                <td className="p-4 text-slate-500 flex items-center space-x-2">
-                  <X className="h-4 w-4 text-red-500 shrink-0" />
-                  <span>Boilerplate templates reused across client lists.</span>
-                </td>
-                <td className="p-4 bg-[#E6F3FF]/20 text-[#003366] font-bold flex items-center space-x-2">
-                  <Check className="h-4 w-4 text-[#28A745] shrink-0" />
-                  <span>Tailored designs respecting team and systems limits.</span>
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-extrabold text-[#003366] bg-slate-50/50">Program Outcomes</td>
-                <td className="p-4 text-slate-500 flex items-center space-x-2">
-                  <X className="h-4 w-4 text-red-500 shrink-0" />
-                  <span>Strategy descriptions without active deployment rules.</span>
-                </td>
-                <td className="p-4 bg-[#E6F3FF]/20 text-[#003366] font-bold flex items-center space-x-2">
-                  <Check className="h-4 w-4 text-[#28A745] shrink-0" />
-                  <span>Strategy connected entirely to verified floor metrics.</span>
-                </td>
-              </tr>
-              <tr>
-                <td className="p-4 font-extrabold text-[#003366] bg-slate-50/50">Capability Transfer</td>
-                <td className="p-4 text-slate-500 flex items-center space-x-2">
-                  <X className="h-4 w-4 text-red-500 shrink-0" />
-                  <span>Knowledge stays inside remote agency resource bases.</span>
-                </td>
-                <td className="p-4 bg-[#E6F3FF]/20 text-[#003366] font-bold flex items-center space-x-2">
-                  <Check className="h-4 w-4 text-[#28A745] shrink-0" />
-                  <span>Certified internal leads trained permanently.</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Responsive view for screens: Desktop Table vs Mobile Stacked comparative Cards */}
+        <div>
+          {/* Mobile phone card list layout */}
+          <div className="sm:hidden space-y-4">
+            {comparisonData.map((row, index) => (
+              <div key={index} className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm">
+                <div className="bg-[#003366] text-white py-2.5 px-4 text-xs font-mono font-bold uppercase tracking-wider">
+                  {row.parameter}
+                </div>
+                <div className="p-4 space-y-3.5">
+                  {/* Traditional consulting */}
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase font-mono font-extrabold text-[#FF6B35] tracking-wider">Traditional Consulting</span>
+                    <div className="flex items-start space-x-2 bg-slate-50 p-3 rounded border border-slate-150">
+                      <X className="h-4 w-4 text-red-500 mt-0.5 shrink-0" />
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed">{row.traditional}</p>
+                    </div>
+                  </div>
+
+                  {/* Maynit strategy */}
+                  <div className="space-y-1">
+                    <span className="text-[10px] uppercase font-mono font-extrabold text-[#0066CC] tracking-wider">Our Approach</span>
+                    <div className="flex items-start space-x-2 bg-[#E6F3FF]/40 p-3 rounded border border-blue-100">
+                      <Check className="h-4 w-4 text-[#28A745] mt-0.5 shrink-0" />
+                      <p className="text-xs text-[#003366] font-bold leading-relaxed">{row.ourApproach}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop/Tablet table view */}
+          <div className="hidden sm:block bg-white rounded border border-slate-200 overflow-hidden shadow-sm">
+            <table className="w-full text-left text-xs md:text-sm border-collapse">
+              <thead>
+                <tr className="bg-[#003366] text-white font-mono text-[10px] tracking-wider uppercase border-b border-slate-200">
+                  <th className="p-4 w-1/4">Core Parameter</th>
+                  <th className="p-4 w-3/8 text-slate-350">Traditional Consulting</th>
+                  <th className="p-4 w-3/8 bg-[#002244] text-white font-black">Our Transformation Approach</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-200 text-xs font-semibold">
+                {comparisonData.map((row, index) => (
+                  <tr key={index}>
+                    <td className="p-4 font-extrabold text-[#003366] bg-slate-50/50 w-1/4 align-top">{row.parameter}</td>
+                    <td className="p-4 text-slate-500 w-3/8 align-top">
+                      <div className="flex items-start space-x-2">
+                        <X className="h-4 w-4 text-red-500 mt-0.5 shrink-0" />
+                        <span className="leading-relaxed">{row.traditional}</span>
+                      </div>
+                    </td>
+                    <td className="p-4 bg-[#E6F3FF]/20 text-[#003366] font-bold w-3/8 align-top">
+                      <div className="flex items-start space-x-2">
+                        <Check className="h-4 w-4 text-[#28A745] mt-0.5 shrink-0" />
+                        <span className="leading-relaxed">{row.ourApproach}</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 

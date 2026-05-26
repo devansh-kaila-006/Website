@@ -9,10 +9,19 @@ interface HeaderProps {
 export default function Header({ currentView, setView }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+      
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (totalHeight > 0) {
+        const progress = (window.scrollY / totalHeight) * 100;
+        setScrollProgress(progress);
+      } else {
+        setScrollProgress(0);
+      }
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -136,6 +145,12 @@ export default function Header({ currentView, setView }: HeaderProps) {
           </div>
         </div>
       )}
+
+      {/* Corporate Accent Animated Custom Scroller Bar */}
+      <div 
+        className="absolute bottom-0 left-0 h-[3px] bg-gradient-to-r from-[#FF6B35] via-[#0066CC] to-[#003366] transition-all duration-75 ease-out rounded-r z-50 shadow-sm" 
+        style={{ width: `${scrollProgress}%` }} 
+      />
     </header>
   );
 }

@@ -117,11 +117,13 @@ export default function ImpactView({ setView }: ImpactViewProps) {
           </div>
 
           {/* Filtering Layout Dropdowns / Pills */}
-          <div className="flex flex-wrap items-center gap-4 text-xs">
-            <div className="flex items-center space-x-2">
-              <Filter className="h-3.5 w-3.5 text-slate-400 shrink-0" />
-              <span className="font-bold text-slate-500 mr-1.5 font-mono uppercase tracking-wider text-[10px]">Sector:</span>
-              <div className="flex space-x-1.5">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 text-xs w-full lg:w-auto">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:items-center gap-2">
+              <div className="flex items-center space-x-2 text-slate-500 font-mono uppercase tracking-wider text-[10px] font-bold shrink-0">
+                <Filter className="h-3.5 w-3.5 text-slate-400 shrink-0" />
+                <span>Sector:</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
                 {industriesList.map((indKey) => (
                   <button
                     key={indKey}
@@ -139,9 +141,9 @@ export default function ImpactView({ setView }: ImpactViewProps) {
               </div>
             </div>
 
-            <div className="flex items-center space-x-2 border-l border-slate-200 pl-4">
-              <span className="font-bold text-slate-550 mr-1.5 font-mono uppercase tracking-wider text-[10px]">Advisory Field:</span>
-              <div className="flex space-x-1.5">
+            <div className="flex flex-col sm:flex-row sm:items-start sm:items-center gap-2 sm:border-l sm:border-slate-200 sm:pl-4 pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-100">
+              <span className="font-bold text-slate-550 font-mono uppercase tracking-wider text-[10px] shrink-0">Advisory Field:</span>
+              <div className="flex flex-wrap gap-1.5">
                 {servicesList.map((servKey) => (
                   <button
                     key={servKey}

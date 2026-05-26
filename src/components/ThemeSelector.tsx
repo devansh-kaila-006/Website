@@ -21,9 +21,20 @@ export default function ThemeSelector({
 }: ThemeSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'themes' | 'templates'>('themes');
+  const [isMobile, setIsMobile] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Close when clicking outside of the dropdown drawer
+  // Responsive device/screen size detection for phone optimizations
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Close when clicking outside of the dropdown components
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
@@ -141,146 +152,207 @@ export default function ThemeSelector({
   ];
 
   return (
-    <div ref={menuRef} className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+    <div ref={menuRef}>
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 15, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 15, scale: 0.95 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="mb-3 w-76 bg-white border border-slate-200 rounded shadow-xl p-3 space-y-2 text-left"
-          >
-            {/* Header description */}
-            <div className="px-2 pb-1.5 border-b border-slate-100 flex items-center justify-between">
-              <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-slate-400 flex items-center gap-1.5">
-                <Settings className="h-3 w-3 text-slate-400 animate-spin-slow" />
-                WORKSPACE BRANDING
-              </span>
-              <span className="text-[8px] font-mono bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded uppercase font-bold text-3xs">
-                15 CONFIG OPTIONS
-              </span>
-            </div>
+          <>
+            {/* Immersive background overlay for mobile screens to anchor focus */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-slate-950/40 backdrop-blur-xs z-50 sm:hidden"
+            />
 
-            {/* Config Mode Switch Tabs */}
-            <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100/70 rounded border border-slate-200/50">
-              <button
-                onClick={() => setActiveTab('themes')}
-                className={`flex items-center justify-center space-x-1.5 py-1.5 px-2 rounded font-bold text-[10px] uppercase tracking-wide transition-all duration-150 cursor-pointer ${
-                  activeTab === 'themes'
-                    ? 'bg-white text-[#003366] shadow-[0_1px_3px_rgba(0,0,0,0.05)] font-extrabold'
-                    : 'text-slate-500 hover:text-slate-900'
-                }`}
-              >
-                <Palette className="h-3 w-3" />
-                <span>Palettes ({themes.length})</span>
-              </button>
-              <button
-                onClick={() => setActiveTab('templates')}
-                className={`flex items-center justify-center space-x-1.5 py-1.5 px-2 rounded font-bold text-[10px] uppercase tracking-wide transition-all duration-150 cursor-pointer ${
-                  activeTab === 'templates'
-                    ? 'bg-white text-[#003366] shadow-[0_1px_3px_rgba(0,0,0,0.05)] font-extrabold'
-                    : 'text-slate-500 hover:text-slate-900'
-                }`}
-              >
-                <Cpu className="h-3 w-3" />
-                <span>Layouts ({templates.length})</span>
-              </button>
-            </div>
-
-            {/* Option lists */}
-            <div className="space-y-1 max-h-80 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-slate-200">
-              {activeTab === 'themes' ? (
-                // THEME LISTING
-                themes.map((themeOption) => {
-                  const isActive = currentTheme === themeOption.id;
-                  const Icon = themeOption.icon;
-                  return (
-                    <button
-                      key={themeOption.id}
-                      onClick={() => {
-                        onThemeChange(themeOption.id);
-                      }}
-                      className={`w-full flex items-center justify-between p-2 rounded text-left transition-all duration-150 cursor-pointer ${
-                        isActive 
-                          ? 'bg-slate-50 border border-slate-200/80 shadow-xxs' 
-                          : 'hover:bg-slate-50 border border-transparent'
-                      }`}
-                    >
-                      <div className="flex items-center space-x-2.5">
-                        <div className={`p-1.5 rounded flex items-center justify-center ${isActive ? 'bg-[#003366] text-white' : 'bg-slate-200 text-slate-600'}`}>
-                          <Icon className="h-3.5 w-3.5" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold text-slate-800 leading-none">
-                            {themeOption.name}
-                          </div>
-                          <div className="text-[9px] text-slate-400 mt-1 leading-none font-semibold">
-                            {themeOption.description}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center space-x-2 shrink-0">
-                        <div className="flex -space-x-1">
-                          <span className={`h-2.5 w-2.5 rounded-full border border-white ${themeOption.colors[0]}`} />
-                          <span className={`h-2.5 w-2.5 rounded-full border border-white ${themeOption.colors[1]}`} />
-                        </div>
-                        {isActive && <Check className="h-3.5 w-3.5 text-emerald-600 shrink-0" />}
-                      </div>
-                    </button>
-                  );
-                })
-              ) : (
-                // LAYOUT TEMPLATE LISTING
-                templates.map((tmplOption) => {
-                  const isActive = currentTemplate === tmplOption.id;
-                  const Icon = tmplOption.icon;
-                  return (
-                    <button
-                      key={tmplOption.id}
-                      onClick={() => {
-                        onTemplateChange(tmplOption.id);
-                      }}
-                      className={`w-full flex items-center justify-between p-2 rounded text-left transition-all duration-150 cursor-pointer ${
-                        isActive 
-                          ? 'bg-slate-50 border border-slate-200/80 shadow-xxs' 
-                          : 'hover:bg-slate-50 border border-transparent'
-                      }`}
-                    >
-                      <div className="flex items-center space-x-2.5">
-                        <div className={`p-1.5 rounded flex items-center justify-center ${isActive ? 'bg-[#003366] text-white' : 'bg-slate-200 text-slate-600'}`}>
-                          <Icon className="h-3.5 w-3.5" />
-                        </div>
-                        <div>
-                          <div className="text-xs font-bold text-slate-800 leading-none">
-                            {tmplOption.name}
-                          </div>
-                          <div className="text-[9px] text-slate-400 mt-1.5 leading-snug font-semibold">
-                            {tmplOption.description}
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center shrink-0">
-                        {isActive && <Check className="h-3.5 w-3.5 text-emerald-600 shrink-0" />}
-                      </div>
-                    </button>
-                  );
-                })
+            {/* Config Choice Panel: Responsive popover for wide, sleek bottom-drawer for phones */}
+            <motion.div
+              initial={isMobile ? { y: '100%' } : { opacity: 0, y: 15, scale: 0.95 }}
+              animate={isMobile ? { y: 0 } : { opacity: 1, y: 0, scale: 1 }}
+              exit={isMobile ? { y: '100%' } : { opacity: 0, y: 15, scale: 0.95 }}
+              transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+              className={`fixed z-50 bg-white text-left shadow-2xl border border-slate-200/80 outline-none
+                ${isMobile 
+                  ? 'bottom-0 left-0 right-0 w-full rounded-t-[2.5rem] p-5 pb-9 border-x-0 border-b-0 max-h-[82vh] flex flex-col' 
+                  : 'bottom-22 right-6 w-80 rounded-xl p-3 space-y-2'
+                }
+              `}
+            >
+              {/* Native touch drag indicator at top on phone layouts */}
+              {isMobile && (
+                <div className="flex justify-center pb-3">
+                  <div className="w-12 h-1.5 bg-slate-200 rounded-full" />
+                </div>
               )}
-            </div>
-          </motion.div>
+
+              {/* Header description with responsive actions */}
+              <div className="px-2 pb-2 border-b border-slate-100 flex items-center justify-between shrink-0">
+                <span className="text-[10px] font-mono font-extrabold uppercase tracking-widest text-slate-400 flex items-center gap-1.5">
+                  <Settings className="h-3 w-3 text-slate-400 rotate-45" />
+                  WORKSPACE BRANDING
+                </span>
+                
+                {isMobile ? (
+                  <button 
+                    onClick={() => setIsOpen(false)}
+                    className="text-[10px] font-mono bg-slate-100 hover:bg-slate-200 text-[#003366] px-3.5 py-1.5 rounded-full font-extrabold uppercase transition-all duration-150 cursor-pointer"
+                  >
+                    Close
+                  </button>
+                ) : (
+                  <span className="text-[8px] font-mono bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded uppercase font-bold text-3xs">
+                    15 CONFIG OPTIONS
+                  </span>
+                )}
+              </div>
+
+              {/* Config Mode Switch Tabs (Higher tap-target height for mobile screens) */}
+              <div className="grid grid-cols-2 gap-1 p-1 bg-slate-100/70 rounded-lg border border-slate-200/50 shrink-0">
+                <button
+                  onClick={() => setActiveTab('themes')}
+                  className={`flex items-center justify-center space-x-1.5 rounded font-bold text-[10px] uppercase tracking-wide transition-all duration-150 cursor-pointer ${
+                    isMobile ? 'py-2 px-3' : 'py-1.5 px-2'
+                  } ${
+                    activeTab === 'themes'
+                      ? 'bg-white text-[#003366] shadow-[0_1px_3px_rgba(0,0,0,0.05)] font-extrabold'
+                      : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  <Palette className="h-3 w-3" />
+                  <span>Palettes ({themes.length})</span>
+                </button>
+                <button
+                  onClick={() => setActiveTab('templates')}
+                  className={`flex items-center justify-center space-x-1.5 rounded font-bold text-[10px] uppercase tracking-wide transition-all duration-150 cursor-pointer ${
+                    isMobile ? 'py-2 px-3' : 'py-1.5 px-2'
+                  } ${
+                    activeTab === 'templates'
+                      ? 'bg-white text-[#003366] shadow-[0_1px_3px_rgba(0,0,0,0.05)] font-extrabold'
+                      : 'text-slate-500 hover:text-slate-900'
+                  }`}
+                >
+                  <Cpu className="h-3 w-3" />
+                  <span>Layouts ({templates.length})</span>
+                </button>
+              </div>
+
+              {/* Option lists (Using overscroll-contain & larger touch padding optimized for fingers on phone) */}
+              <div className={`space-y-1.5 overflow-y-auto pr-1 overscroll-contain scrollbar-thin scrollbar-thumb-slate-200 ${
+                isMobile ? 'flex-1 min-h-0 py-2.5' : 'max-h-80'
+              }`}>
+                {activeTab === 'themes' ? (
+                  // THEME LISTING
+                  themes.map((themeOption) => {
+                    const isActive = currentTheme === themeOption.id;
+                    const Icon = themeOption.icon;
+                    return (
+                      <button
+                        key={themeOption.id}
+                        onClick={() => {
+                          onThemeChange(themeOption.id);
+                        }}
+                        className={`w-full flex items-center justify-between rounded-lg text-left transition-all duration-150 cursor-pointer border ${
+                          isMobile ? 'p-3' : 'p-2'
+                        } ${
+                          isActive 
+                            ? 'bg-slate-50 border-slate-200/80 shadow-xxs' 
+                            : 'hover:bg-slate-50/50 border-transparent'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div className={`rounded-md flex items-center justify-center shrink-0 ${
+                            isMobile ? 'p-2' : 'p-1.5'
+                          } ${
+                            isActive ? 'bg-[#003366] text-white' : 'bg-slate-200 text-slate-600'
+                          }`}>
+                            <Icon className="h-3.5 w-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-800 leading-none">
+                              {themeOption.name}
+                            </div>
+                            <div className="text-[9px] text-slate-400 mt-1 leading-none font-semibold">
+                              {themeOption.description}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center space-x-2 shrink-0">
+                          <div className="flex -space-x-1">
+                            <span className={`rounded-full border border-white ${
+                              isMobile ? 'h-3.5 w-3.5 border-1.5' : 'h-2.5 w-2.5'
+                            } ${themeOption.colors[0]}`} />
+                            <span className={`rounded-full border border-white ${
+                              isMobile ? 'h-3.5 w-3.5 border-1.5' : 'h-2.5 w-2.5'
+                            } ${themeOption.colors[1]}`} />
+                          </div>
+                          {isActive && <Check className="h-3 w-3.5 text-emerald-600 shrink-0" />}
+                        </div>
+                      </button>
+                    );
+                  })
+                ) : (
+                  // LAYOUT TEMPLATE LISTING
+                  templates.map((tmplOption) => {
+                    const isActive = currentTemplate === tmplOption.id;
+                    const Icon = tmplOption.icon;
+                    return (
+                      <button
+                        key={tmplOption.id}
+                        onClick={() => {
+                          onTemplateChange(tmplOption.id);
+                        }}
+                        className={`w-full flex items-center justify-between rounded-lg text-left transition-all duration-150 cursor-pointer border ${
+                          isMobile ? 'p-3' : 'p-2'
+                        } ${
+                          isActive 
+                            ? 'bg-slate-50 border-slate-200/80 shadow-xxs' 
+                            : 'hover:bg-slate-50/50 border-transparent'
+                        }`}
+                      >
+                        <div className="flex items-center space-x-3">
+                          <div className={`rounded-md flex items-center justify-center shrink-0 ${
+                            isMobile ? 'p-2' : 'p-1.5'
+                          } ${
+                            isActive ? 'bg-[#003366] text-white' : 'bg-slate-200 text-slate-600'
+                          }`}>
+                            <Icon className="h-3.5 w-3.5" />
+                          </div>
+                          <div>
+                            <div className="text-xs font-bold text-slate-800 leading-none">
+                              {tmplOption.name}
+                            </div>
+                            <div className="text-[9px] text-slate-400 mt-1.5 leading-snug font-semibold">
+                              {tmplOption.description}
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center shrink-0">
+                          {isActive && <Check className="h-3 w-3.5 text-emerald-600 shrink-0" />}
+                        </div>
+                      </button>
+                    );
+                  })
+                )}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="h-12 w-12 bg-[#003366] hover:bg-[#003366]/90 hover:scale-105 active:scale-95 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer border border-white/10 group focus:outline-none"
-        title="Toggle Brand Themes & Templates"
-      >
-        <Palette className="h-5 w-5 group-hover:rotate-12 transition-transform duration-300" />
-      </button>
+      {/* Floating Trigger button (Slightly larger tap area and more distinct positioning on mobile) */}
+      <div className={`fixed z-50 ${isMobile ? 'bottom-4 right-4' : 'bottom-6 right-6'}`}>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={`bg-[#003366] hover:bg-[#003366]/90 hover:scale-105 active:scale-95 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer border border-white/10 group focus:outline-none ${
+            isMobile ? 'h-14 w-14' : 'h-12 w-12'
+          }`}
+          title="Toggle Brand Themes & Templates"
+        >
+          <Palette className={`${isMobile ? 'h-6 w-6' : 'h-5 w-5'} group-hover:rotate-12 transition-transform duration-300`} />
+        </button>
+      </div>
     </div>
   );
 }
