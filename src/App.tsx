@@ -18,8 +18,7 @@ export default function App() {
   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(null);
 
   useEffect(() => {
-    const root = document.documentElement;
-    root.classList.add('template-editorial');
+    // Render using standard Swiss/Modern layout (Option B) by keeping classList clean
   }, []);
 
   const renderActiveView = () => {
