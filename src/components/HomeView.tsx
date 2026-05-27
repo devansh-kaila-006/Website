@@ -48,8 +48,12 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
     <div id="home-view-container" className="space-y-20 pb-4">
       
       {/* SECTION 1: HERO */}
-      <section 
+      <motion.section 
         id="hero-section" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
         className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-white via-[#E6F3FF]/40 to-[#E6F3FF] text-slate-900 pt-28 overflow-hidden px-4"
       >
         {/* Abstract vector flow background accent */}
@@ -185,10 +189,17 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
           </motion.div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 2: TRUST INDICATORS BAR */}
-      <section id="trust-indicator-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+      <motion.section 
+        id="trust-indicator-section" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20"
+      >
         <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-md shadow-slate-100">
           <p className="text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 font-mono">
             Trusted by organizations across dynamic vertical sectors
@@ -206,10 +217,17 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 3: VALUE PROPOSITION ("Why Us") */}
-      <section id="why-us-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <motion.section 
+        id="why-us-section" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4"
+      >
         <div className="text-center max-w-3xl mx-auto space-y-4 mb-12">
           <span className="text-xxs font-bold text-[#FF6B35] uppercase tracking-wider block">Our Competitive Advantage</span>
           <h2 className="text-3xl font-extrabold text-[#003366] tracking-tight">
@@ -244,10 +262,17 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             );
           })}
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 4: CORE SERVICES PREVIEW */}
-      <section id="services-preview-section" className="bg-[#F8FAFC] py-16 border-y border-slate-100">
+      <motion.section 
+        id="services-preview-section" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-[#F8FAFC] py-16 border-y border-slate-100"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-10">
             <div className="space-y-2 text-left">
@@ -303,10 +328,17 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             })}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 5: OUR APPROACH PREVIEW (Interactive) */}
-      <section id="approach-preview-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <motion.section 
+        id="approach-preview-section" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4"
+      >
         <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
           <span className="text-xxs font-bold text-[#FF6B35] uppercase tracking-wider block">OUR PROTOCOLS</span>
           <h3 className="text-2xl sm:text-3xl font-extrabold text-[#003366] tracking-tight">
@@ -411,10 +443,17 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             <ChevronRight className="h-3.5 w-3.5" />
           </button>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 6: INDUSTRIES SERVED */}
-      <section id="industries-preview-section" className="bg-[#003366] text-white py-16">
+      <motion.section 
+        id="industries-preview-section" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-[#003366] text-white py-16"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
           <div className="max-w-3xl mb-10 space-y-2">
             <span className="text-xxs font-bold text-[#FF6B35] uppercase tracking-wider block font-mono">VERTICALS SERVED</span>
@@ -454,10 +493,17 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             })}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 7: FINAL CTA LIMITS */}
-      <section id="home-last-cta-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <motion.section 
+        id="home-last-cta-section" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4"
+      >
         <div className="bg-[#003366] text-white rounded-3xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden shadow-lg shadow-blue-900/10">
           
           {/* Subtle decoration vector */}
@@ -486,7 +532,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
     </div>
   );

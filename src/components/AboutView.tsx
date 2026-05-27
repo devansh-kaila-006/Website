@@ -47,7 +47,13 @@ export default function AboutView({ setView }: AboutViewProps) {
     <div id="about-view-container" className="pt-24 space-y-16 pb-12">
       
       {/* Page Header banner */}
-      <section className="bg-slate-50 border-b border-slate-150 py-12 text-left">
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-slate-50 border-b border-slate-150 py-12 text-left"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
@@ -63,10 +69,17 @@ export default function AboutView({ setView }: AboutViewProps) {
             </p>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 1: WHO WE ARE (SPLIT LAYOUT) */}
-      <section id="about-who-we-are" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <motion.section 
+        id="about-who-we-are" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Main narrative content */}
@@ -181,10 +194,17 @@ export default function AboutView({ setView }: AboutViewProps) {
           </motion.div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 2: VISION & MISSION */}
-      <section id="about-vision-mission" className="bg-slate-50 py-12 border-y border-slate-150">
+      <motion.section 
+        id="about-vision-mission" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-slate-50 py-12 border-y border-slate-150"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
             
@@ -234,10 +254,17 @@ export default function AboutView({ setView }: AboutViewProps) {
 
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 3: WHAT MAKES US DIFFERENT */}
-      <section id="about-traditional-vs-us" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left py-4">
+      <motion.section 
+        id="about-traditional-vs-us" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left py-4"
+      >
         <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
           <span className="text-xxs font-bold text-[#FF6B35] uppercase tracking-wider block">HOW WE COMPETE</span>
           <h3 className="text-2xl md:text-3xl font-extrabold text-[#003366] tracking-tight">
@@ -325,10 +352,17 @@ export default function AboutView({ setView }: AboutViewProps) {
             </table>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* BRIEF LEADERSHIP EXTRACTION - HYBRID OPTION 3 */}
-      <section id="about-directors-overview" className="bg-slate-50 py-12 border-y border-slate-150">
+      <motion.section 
+        id="about-directors-overview" 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-slate-50 py-12 border-y border-slate-150"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
             <span className="text-xxs font-bold text-[#FF6B35] uppercase tracking-wider block">OUR DIRECTORS</span>
@@ -386,10 +420,16 @@ export default function AboutView({ setView }: AboutViewProps) {
             </motion.button>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* CTA section bottom */}
-      <section className="bg-[#003366] text-white py-12 text-center rounded-3xl max-w-7xl mx-auto px-4 shadow-xl">
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-[#003366] text-white py-12 text-center rounded-3xl max-w-7xl mx-auto px-4 shadow-xl"
+      >
         <h3 className="text-xl md:text-2xl font-extrabold tracking-tight">Learn About Our 7 Core Specializations</h3>
         <p className="text-[10px] text-slate-300 font-mono mt-1 uppercase tracking-widest font-semibold">Proven operational outcomes across diverse organizational layouts</p>
         <motion.button
@@ -401,7 +441,7 @@ export default function AboutView({ setView }: AboutViewProps) {
         >
           Explore Our Solutions
         </motion.button>
-      </section>
+      </motion.section>
 
     </div>
   );

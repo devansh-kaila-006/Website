@@ -21,6 +21,7 @@ export default function ContactView() {
   const [form, setForm] = useState<ContactFormInput>({
     name: '',
     email: '',
+    phoneNumber: '',
     company: '',
     industry: 'Manufacturing',
     serviceOfInterest: 'General Inquiry',
@@ -71,6 +72,7 @@ export default function ContactView() {
           {
             name: form.name,
             email: form.email,
+            phone_number: form.phoneNumber || null,
             company: form.company,
             industry: form.industry,
             service_of_interest: form.serviceOfInterest, // DB column naming convention
@@ -85,6 +87,7 @@ export default function ContactView() {
       setForm({
         name: '',
         email: '',
+        phoneNumber: '',
         company: '',
         industry: 'Manufacturing',
         serviceOfInterest: 'General Inquiry',
@@ -130,7 +133,13 @@ export default function ContactView() {
       </section>
 
       {/* SPLIT LAYOUT: Consultation Form vs Contact Sidebar */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left"
+      >
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* LEFT: Complete lead capture Contact Form */}
@@ -220,6 +229,22 @@ export default function ContactView() {
                         }`}
                       />
                       {errors.email && <p className="text-3xs font-semibold text-red-500 leading-none">{errors.email}</p>}
+                    </div>
+
+                    {/* Phone Number (Optional) */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="contact_phone" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
+                        Phone Number (Optional)
+                      </label>
+                      <input
+                        type="tel"
+                        id="contact_phone"
+                        name="contact_phone"
+                        value={form.phoneNumber}
+                        onChange={(e) => setForm({ ...form, phoneNumber: e.target.value })}
+                        placeholder="e.g. +1 555 000 0000"
+                        className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded focus:outline-none focus:ring-[#0066CC] focus:border-[#0066CC] font-semibold"
+                      />
                     </div>
                   </div>
 
@@ -430,10 +455,16 @@ export default function ContactView() {
           </div>
 
         </div>
-      </section>
+      </motion.section>
 
       {/* SECTION 4: STEP-BY-STEP CONSULTATION PROCESS */}
-      <section className="bg-slate-50 py-16 border-y border-slate-150 text-left">
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        viewport={{ once: true, margin: "-100px" }}
+        className="bg-slate-50 py-16 border-y border-slate-150 text-left"
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           
           <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
@@ -482,7 +513,7 @@ export default function ContactView() {
           </div>
 
         </div>
-      </section>
+      </motion.section>
 
     </div>
   );

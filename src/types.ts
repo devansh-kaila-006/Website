@@ -86,6 +86,7 @@ export interface Testimonial {
 export interface ContactFormInput {
   name: string;
   email: string;
+  phoneNumber?: string;
   company: string;
   industry: string;
   serviceOfInterest: string;
