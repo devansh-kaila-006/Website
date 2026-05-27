@@ -211,7 +211,7 @@ export default function Header({
             onClick={() => handleNav('home')}
             className="flex items-center text-left group focus:outline-none"
           >
-            <img src={logo} alt="Maynit Logo" className="h-[102px] w-auto" />
+            <img src={logo} alt="Maynit Logo" className="h-32 w-auto" />
           </button>
 
           {/* Desktop Nav with hover dropdown menus */}
