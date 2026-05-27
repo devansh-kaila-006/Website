@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   TrendingDown, 
   Zap, 
@@ -66,8 +66,13 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10 py-10">
           
           {/* Hero Left: Text copy and CTA buttons */}
-          <div className="lg:col-span-7 space-y-6 text-left">
-            <span className="inline-flex items-center space-x-2 px-3 py-1 bg-white border border-slate-100 rounded text-[10px] font-bold text-[#0066CC] tracking-widest uppercase font-mono shadow-sm">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 space-y-6 text-left"
+          >
+            <span className="inline-flex items-center space-x-2 px-3.5 py-1 bg-white border border-slate-200/60 rounded-lg text-[10px] font-bold text-[#0066CC] tracking-widest uppercase font-mono shadow-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B35] animate-pulse"></span>
               <span>MANAGEMENT CONSULTING PARTNER</span>
             </span>
@@ -82,38 +87,53 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
  
             {/* Premium Clean Minimalism Stats Strip - Fully optimized for phone stacked layouts */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-md w-full pt-1">
-              <div className="bg-white px-5 py-3 rounded shadow-sm border border-slate-100 flex items-center gap-3">
+              <motion.div 
+                whileHover={{ y: -3, transition: { duration: 0.15 } }}
+                className="bg-white px-5 py-3 rounded-2xl shadow-sm border border-slate-150 flex items-center gap-3 cursor-default"
+              >
                 <span className="text-2xl sm:text-3xl font-extrabold text-[#28A745]">↓30%</span>
                 <span className="text-[10px] uppercase tracking-wider font-semibold text-slate-400 font-mono leading-tight">Cost<br/>Reduction</span>
-              </div>
-              <div className="bg-white px-5 py-3 rounded shadow-sm border border-slate-100 flex items-center gap-3">
+              </motion.div>
+              <motion.div 
+                whileHover={{ y: -3, transition: { duration: 0.15 } }}
+                className="bg-white px-5 py-3 rounded-2xl shadow-sm border border-slate-150 flex items-center gap-3 cursor-default"
+              >
                 <span className="text-2xl sm:text-3xl font-extrabold text-[#28A745]">↑40%</span>
                 <span className="text-[10px] uppercase tracking-wider font-semibold text-slate-400 font-mono leading-tight">Process<br/>Efficiency</span>
-              </div>
+              </motion.div>
             </div>
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
-              <button
+              <motion.button
                 id="hero-primary-cta"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => { setView('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="px-6 py-3 bg-[#FF6B35] hover:bg-[#e85a2a] text-white text-xs font-bold uppercase tracking-widest rounded shadow hover:shadow-lg transition-all duration-200 inline-flex items-center justify-center space-x-2"
+                className="px-6 py-3 bg-[#FF6B35] hover:bg-[#e85a2a] text-white text-xs font-bold uppercase tracking-widest rounded-xl shadow hover:shadow-lg transition-all duration-200 inline-flex items-center justify-center space-x-2 cursor-pointer"
               >
                 <span>Partner With Us</span>
                 <ArrowRight className="h-4 w-4" />
-              </button>
-              <button
+              </motion.button>
+              <motion.button
                 id="hero-secondary-cta"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => { setView('services'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="px-6 py-3 bg-white border border-slate-100 hover:border-slate-300 text-[#003366] text-xs font-bold uppercase tracking-widest rounded shadow-sm hover:bg-slate-50 transition-all duration-150 text-center"
+                className="px-6 py-3 bg-white border border-slate-200 hover:border-slate-350 text-[#003366] text-xs font-bold uppercase tracking-widest rounded-xl shadow-sm hover:bg-slate-50 transition-all duration-150 text-center cursor-pointer"
               >
                 Explore Our Solutions
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Hero Right: Interactive Dashboard Widget & Metrics */}
-          <div className="lg:col-span-5 relative flex flex-col items-center justify-center">
-            <div id="hero-diagnostic-preview" className="w-full bg-white rounded-xl border border-slate-100 p-6 sm:p-7 shadow-lg max-w-md relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            className="lg:col-span-5 relative flex flex-col items-center justify-center"
+          >
+            <div id="hero-diagnostic-preview" className="w-full bg-white rounded-2xl border border-slate-150 p-6 sm:p-7 shadow-lg max-w-md relative">
               <div className="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
                 <div className="flex items-center space-x-2">
                   <div className="h-2 w-2 rounded-sm bg-[#FF6B35]"></div>
@@ -129,10 +149,10 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
                     <div 
                       key={metric.id}
                       id={`hero-metric-card-${metric.id}`}
-                      className="p-3 bg-slate-50/70 hover:bg-[#E6F3FF]/40 rounded border border-slate-100 hover:border-blue-100 transition-all duration-200 flex items-center justify-between"
+                      className="p-3 bg-slate-50/70 hover:bg-[#E6F3FF]/40 rounded-xl border border-slate-150 hover:border-blue-100 transition-all duration-200 flex items-center justify-between"
                     >
                       <div className="flex items-center space-x-3 text-left">
-                        <div className="p-2 bg-white rounded border border-slate-100 text-[#0066CC] shadow-sm shrink-0">
+                        <div className="p-2 bg-white rounded-lg border border-slate-150 text-[#0066CC] shadow-sm shrink-0">
                           {IconComp && <IconComp className="h-4 w-4" />}
                         </div>
                         <div>
@@ -164,25 +184,27 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             {/* Soft decorative background elements */}
             <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-[#E6F3FF]/70 rounded-full blur-xl -z-10"></div>
             <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-50/80 rounded-full blur-xl -z-10"></div>
-          </div>
+          </motion.div>
 
         </div>
       </section>
 
       {/* SECTION 2: TRUST INDICATORS BAR */}
       <section id="trust-indicator-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
-        <div className="bg-white rounded border border-slate-200 p-6 shadow-sm">
+        <div className="bg-white rounded-2xl border border-slate-200 p-6 shadow-md shadow-slate-100">
           <p className="text-center text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4 font-mono">
             Trusted by organizations across dynamic vertical sectors
           </p>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 items-center text-center">
             {['Manufacturing Grid', 'Services Consortium', 'Logistics Network', 'Healthcare Union', 'Retail Coalition'].map((logo, index) => (
-              <div 
-                key={index} 
-                className="px-4 py-2.5 bg-slate-50 rounded border border-slate-150 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider select-none hover:text-[#0066CC] hover:bg-[#E6F3FF]/40 hover:border-[#0066CC]/30 transition-all duration-200"
+              <motion.div 
+                key={index}
+                whileHover={{ y: -3, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                className="px-4 py-2.5 bg-slate-50 rounded-xl border border-slate-150 text-[11px] font-extrabold text-slate-500 uppercase tracking-wider select-none hover:text-[#0066CC] hover:bg-[#E6F3FF]/40 hover:border-[#0066CC]/30 shadow-sm transition-all duration-200 cursor-default"
               >
                 {logo}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -204,12 +226,14 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
           {VALUE_PROPS.map((prop) => {
             const IconComp = iconMap[prop.iconName];
             return (
-              <div
+              <motion.div
                 key={prop.id}
                 id={`value-prop-${prop.id}`}
-                className="bg-white border border-slate-200 hover:border-[#0066CC] p-5 rounded shadow-sm hover:shadow transition-all duration-200 group flex flex-col text-left"
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                className="bg-white border border-slate-200 hover:border-[#0066CC] p-5 rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 group flex flex-col text-left cursor-default"
               >
-                <div className="p-2.5 bg-slate-50 text-[#0066CC] rounded-sm inline-block w-fit mb-4 group-hover:bg-[#FF6B35] group-hover:text-white transition-colors duration-200">
+                <div className="p-2.5 bg-slate-50 text-[#0066CC] rounded-lg inline-block w-fit mb-4 group-hover:bg-[#FF6B35] group-hover:text-white transition-colors duration-200">
                   {IconComp && <IconComp className="h-4.5 w-4.5" />}
                 </div>
                 <h3 className="font-extrabold text-[#003366] text-[15px] mb-1.5 group-hover:text-[#0066CC] transition-colors">
@@ -218,7 +242,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
                 <p className="text-xs text-slate-500 leading-relaxed flex-grow font-medium">
                   {prop.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>
@@ -248,15 +272,17 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             {SERVICES_DATA.map((service) => {
               const IconComp = iconMap[service.iconName];
               return (
-                <div
+                <motion.div
                   key={service.id}
                   id={`service-preview-card-${service.id}`}
                   onClick={() => handleServiceClick(service.id)}
-                  className="bg-white border-l-2 border-[#0066CC] border-y border-r border-slate-150 p-6 rounded-r shadow-sm hover:shadow hover:border-l-[#003366] cursor-pointer transition-all duration-205 group text-left flex flex-col justify-between"
+                  whileHover={{ y: -4, scale: 1.015 }}
+                  transition={{ type: "spring", stiffness: 450, damping: 19 }}
+                  className="bg-white border-l-4 border-[#0066CC] border-y border-r border-slate-150 p-6 rounded-2xl shadow-sm hover:shadow-md hover:border-l-[#003366] cursor-pointer transition-all duration-205 group text-left flex flex-col justify-between"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="p-2 bg-slate-50 text-slate-700 rounded-sm group-hover:bg-[#E6F3FF]/60 group-hover:text-[#0066CC] transition-colors">
+                      <div className="p-2 bg-slate-50 text-slate-700 rounded-lg group-hover:bg-[#E6F3FF]/60 group-hover:text-[#0066CC] transition-colors">
                         {IconComp && <IconComp className="h-4.5 w-4.5" />}
                       </div>
                       <span className="text-[9px] font-mono font-bold text-slate-400 group-hover:text-[#0066CC] uppercase tracking-widest">
@@ -274,7 +300,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
                     <span>Analyze Service Parameters</span>
                     <ChevronRight className="h-3.5 w-3.5 ml-1 transform group-hover:translate-x-1 transition-transform" />
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -294,18 +320,25 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
         </div>
 
         {/* Step Tabs header */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 bg-slate-100 p-1.5 rounded border border-slate-200">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-8 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 relative z-0">
           {APPROACH_STAGES.map((stage, idx) => (
             <button
               key={stage.id}
               id={`approach-step-tab-${idx}`}
               onClick={() => setActiveApproachStep(idx)}
-              className={`py-3 px-4 text-center rounded font-semibold text-xs transition-all duration-150 focus:outline-none ${
+              className={`relative py-3 px-4 text-center rounded-xl font-semibold text-xs focus:outline-none transition-colors duration-200 select-none ${
                 activeApproachStep === idx
-                  ? 'bg-white text-[#003366] shadow-sm border border-slate-200'
-                  : 'text-slate-500 hover:text-slate-800 hover:bg-slate-50/50'
+                  ? 'text-[#003366]'
+                  : 'text-slate-500 hover:text-slate-800'
               }`}
             >
+              {activeApproachStep === idx && (
+                <motion.span
+                  layoutId="activeApproachPill"
+                  className="absolute inset-0 bg-white rounded-xl shadow-sm border border-slate-200 -z-10"
+                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                />
+              )}
               <div className="text-[9px] uppercase tracking-widest font-mono font-bold text-slate-400">Step 0{idx + 1}</div>
               <div className="font-extrabold truncate uppercase text-[11px] mt-0.5">{stage.title}</div>
             </button>
@@ -313,50 +346,61 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
         </div>
 
         {/* Step content presentation */}
-        <div className="bg-white rounded border border-slate-200 p-6 md:p-8 shadow-sm text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-8 space-y-4">
-            <div className="flex items-center space-x-3">
-              <span className="text-slate-400 font-mono font-bold text-lg">0{APPROACH_STAGES[activeApproachStep].number}.</span>
-              <h4 className="text-xl md:text-2xl font-extrabold text-[#003366]">
-                {APPROACH_STAGES[activeApproachStep].title} Stage
-              </h4>
-            </div>
-            
-            <p className="text-xs font-bold text-[#0066CC] font-mono uppercase tracking-wide">
-              "{APPROACH_STAGES[activeApproachStep].oneLiner}"
-            </p>
-            
-            <p className="text-sm text-slate-600 leading-relaxed font-medium">
-              {APPROACH_STAGES[activeApproachStep].description}
-            </p>
+        <div className="relative overflow-hidden w-full">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeApproachStep}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white rounded-3xl border border-slate-200 p-6 md:p-8 shadow-md text-left grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch"
+            >
+              <div className="lg:col-span-8 space-y-4">
+                <div className="flex items-center space-x-3">
+                  <span className="text-slate-400 font-mono font-bold text-lg">0{APPROACH_STAGES[activeApproachStep].number}.</span>
+                  <h4 className="text-xl md:text-2xl font-extrabold text-[#003366]">
+                    {APPROACH_STAGES[activeApproachStep].title} Stage
+                  </h4>
+                </div>
+                
+                <p className="text-xs font-bold text-[#0066CC] font-mono uppercase tracking-wide">
+                  "{APPROACH_STAGES[activeApproachStep].oneLiner}"
+                </p>
+                
+                <p className="text-sm text-slate-600 leading-relaxed font-medium">
+                  {APPROACH_STAGES[activeApproachStep].description}
+                </p>
 
-            <div className="space-y-2 pt-2">
-              <p className="text-xs font-bold text-[#003366] uppercase tracking-wider font-mono">Core Actions:</p>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {APPROACH_STAGES[activeApproachStep].details.slice(0, 4).map((detail, index) => (
-                  <li key={index} className="flex items-start space-x-2 text-xs text-slate-600 font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B35] mt-1.5 shrink-0"></span>
-                    <span>{detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div className="lg:col-span-4 bg-slate-50 rounded p-5 border border-slate-150 flex flex-col justify-between h-full">
-            <div className="space-y-3 text-left">
-              <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-widest block">Core Deliverable:</span>
-              <p className="text-xs text-slate-700 leading-relaxed font-bold">
-                {APPROACH_STAGES[activeApproachStep].output}
-              </p>
-            </div>
-            {APPROACH_STAGES[activeApproachStep].metric && (
-              <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider">Milestone target:</span>
-                <span className="text-xs font-bold text-[#28A745] bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-150 self-start sm:self-auto max-w-full text-left">{APPROACH_STAGES[activeApproachStep].metric}</span>
+                <div className="space-y-2 pt-2">
+                  <p className="text-xs font-bold text-[#003366] uppercase tracking-wider font-mono">Core Actions:</p>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {APPROACH_STAGES[activeApproachStep].details.slice(0, 4).map((detail, index) => (
+                      <li key={index} className="flex items-start space-x-2 text-xs text-slate-600 font-medium">
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B35] mt-1.5 shrink-0"></span>
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-            )}
-          </div>
+
+              <div className="lg:col-span-4 bg-slate-50 rounded-2xl p-5 border border-slate-150 flex flex-col justify-between h-full">
+                <div className="space-y-3 text-left">
+                  <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-widest block">Core Deliverable:</span>
+                  <p className="text-xs text-slate-700 leading-relaxed font-bold">
+                    {APPROACH_STAGES[activeApproachStep].output}
+                  </p>
+                </div>
+                {APPROACH_STAGES[activeApproachStep].metric && (
+                  <div className="mt-6 pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <span className="text-[9px] font-mono font-bold text-slate-400 uppercase tracking-wider">Milestone target:</span>
+                    <span className="text-xs font-bold text-[#28A745] bg-emerald-50 px-2.5 py-0.5 rounded-lg border border-emerald-150 self-start sm:self-auto max-w-full text-left">{APPROACH_STAGES[activeApproachStep].metric}</span>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         <div className="text-center mt-6">
@@ -388,13 +432,15 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
             {INDUSTRIES_DATA.map((ind) => {
               const IconComp = iconMap[ind.iconName];
               return (
-                <div
+                <motion.div
                   key={ind.id}
                   id={`industry-pill-${ind.id}`}
                   onClick={() => { setView('industries'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                  className="bg-white/5 border border-white/10 hover:border-white/20 p-5 rounded-sm hover:bg-white/[0.08] cursor-pointer transition-all duration-150 text-left flex flex-col justify-between"
+                  whileHover={{ y: -4, scale: 1.02, backgroundColor: "rgba(255, 255, 255, 0.08)" }}
+                  transition={{ type: "spring", stiffness: 450, damping: 18 }}
+                  className="bg-white/5 border border-white/10 hover:border-white/20 p-5 rounded-2xl cursor-pointer transition-all duration-150 text-left flex flex-col justify-between"
                 >
-                  <div className="p-2 bg-white/10 text-[#FF6B35] rounded-sm w-fit mb-4">
+                  <div className="p-2 bg-white/10 text-[#FF6B35] rounded-lg w-fit mb-4">
                     {IconComp && <IconComp className="h-4 w-4" />}
                   </div>
                   <div>
@@ -405,7 +451,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
                       {ind.overview}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
@@ -414,7 +460,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
 
       {/* SECTION 7: FINAL CTA LIMITS */}
       <section id="home-last-cta-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="bg-[#003366] text-white rounded p-8 md:p-12 text-center space-y-6 relative overflow-hidden">
+        <div className="bg-[#003366] text-white rounded-3xl p-8 md:p-12 text-center space-y-6 relative overflow-hidden shadow-lg shadow-blue-900/10">
           
           {/* Subtle decoration vector */}
           <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/5 rounded-full pointer-events-none"></div>
@@ -431,7 +477,7 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
               <button
                 id="home-final-cta-btn"
                 onClick={() => { setView('contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-[#FF6B35] hover:bg-[#e85a2a] text-white text-xs font-bold uppercase tracking-widest rounded shadow hover:shadow-lg transition-all"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-[#FF6B35] hover:bg-[#e85a2a] text-white text-xs font-bold uppercase tracking-widest rounded-xl shadow hover:shadow-lg transition-all"
               >
                 <span>Request Consultation</span>
                 <ArrowRight className="h-4 w-4" />

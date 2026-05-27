@@ -5,7 +5,8 @@ import {
   ApproachStage,
   IndustryDetail,
   CaseStudy,
-  Testimonial
+  Testimonial,
+  LeaderProfile
 } from './types';
 
 export const METRICS: Metric[] = [
@@ -548,3 +549,96 @@ export const TESTIMONIALS: Testimonial[] = [
     resultsAchieved: 'Voluntary turnover plummeted by 32%, and work stoppages fell to zero.'
   }
 ];
+
+export const LEADERSHIP_DATA: LeaderProfile[] = [
+  {
+    id: 'rajnish_kaila',
+    name: 'Rajnish Kaila',
+    title: 'Co-Founder & Digital Transformation Lead',
+    experienceYears: 25,
+    location: 'Ludhiana, Punjab',
+    photoUrl: 'https://picsum.photos/seed/rajnish/400/400',
+    tagline: '25+ years digital transformation expert with 50+ ServiceNow implementations. TOC certified with 50% OTIF improvement and 50% PLT reduction across manufacturing operations.',
+    bioParagraphs: [
+      '25+ years senior professional specializing in Program Management and IT-enabled Digital Transformation. Lead delivery for 50+ ServiceNow implementations globally. Formerly served as President IT & Chief IT Architect at Trident Group, leading 100+ Crore tech programs.',
+      'Rajnish excels in deploying cutting-edge enterprise system architecture, combining TOC principles with streamlined service workflows. He has a proven history of automating operational bottlenecks and unlocking significant organizational capacity.'
+    ],
+    coreExpertise: [
+      'ServiceNow Implementation (50+ projects)',
+      'SAP & Enterprise Architecture',
+      'TOC (Theory of Constraints) Certified',
+      'Program Management (100+ Cr programs)',
+      'Digital Transformation & Cloud Strategy'
+    ],
+    credentials: [
+      'ITIL Certified Expert',
+      'ServiceNow Certified System Administrator',
+      'CIS - Security Incident Response',
+      '25+ years IT & digital transformation experience'
+    ],
+    industriesServed: [
+      { name: 'Manufacturing', years: 25 },
+      { name: 'IT Services', years: 20 },
+      { name: 'Textiles', years: 15 },
+      { name: 'Consulting', years: 10 }
+    ],
+    notableAchievements: [
+      'Orchestrated 50+ complex ServiceNow and cloud platform implementations across various industrial matrices.',
+      'Managed 100+ Crore program management portfolios with high-velocity deliveries and modern service practices.',
+      'Achieved 50% increase in On-Time-In-Full (OTIF) metrics and 50% Production Lead Time (PLT) compression via combined TOC structures.',
+      'Unlocked 20+ Full-Time Employee (FTE) savings through cloud process automation workflows.'
+    ],
+    education: [
+      'Bachelor of Engineering (Computer Science) - Mumbai University, 1998'
+    ],
+    beyondWork: 'Rajnish researches digital operations scalability and actively supports youth tech bootcamps in Punjab.',
+    email: 'rajnishkaila76@gmail.com',
+    phone: '+91 9872422589'
+  },
+  {
+    id: 'vineet_kulshreshtha',
+    name: 'Vineet Kulshreshtha',
+    title: 'Co-Founder & Operations Excellence Lead',
+    experienceYears: 23,
+    location: 'Ludhiana, Punjab',
+    photoUrl: 'https://picsum.photos/seed/vineet/400/400',
+    tagline: '23+ years operations expert delivering 40%+ efficiency improvements through TOC implementation and supply chain optimization. Proven track record: on-time performance from 41% to 99.4%.',
+    bioParagraphs: [
+      'Senior Management Professional with 23+ years expertise in Operations, P&L, Textiles Manufacturing, Systems & Supply Chain. Expert in TOC implementation with proven results: on-time performance from 41% to 99.4%. Recently served as VP - Operations & Supply Chain, Trident Limited.',
+      'Vineet is an operations management authority specializing in process re-engineering and planning matrices. He focuses on on-time delivery (OTIF), supply chain scaling, inventory compression, and full-scale factory layouts, delivering systemic cost optimizations and productivity lifts.'
+    ],
+    coreExpertise: [
+      'TOC (Theory of Constraints) Certified',
+      'Supply Chain Management & Optimization',
+      'SAP S/4HANA Implementation Expert',
+      'P&L Management & Operations Leadership',
+      'Manufacturing Process Excellence'
+    ],
+    credentials: [
+      'TOC Certification - Vector Consulting (2020)',
+      'SAP Functional Training PP - SAP India (2017)',
+      'NOW Functional Training (2011)',
+      '23+ Years manufacturing operations experience'
+    ],
+    industriesServed: [
+      { name: 'Textiles', years: 20 },
+      { name: 'Manufacturing', years: 23 },
+      { name: 'Supply Chain', years: 15 },
+      { name: 'Operations', years: 23 }
+    ],
+    notableAchievements: [
+      'Engineered on-time delivery metric shift from 41% to 99.4% via strict synchronization workflows.',
+      'Slashed conversion and manufacturing overhead wastes by 50%+ through strategic shopfloor reorganization.',
+      'Managed multiple high-complexity enterprise SAP S/4HANA core deployments (Trident, Welspun, Bombay Rayon).'
+    ],
+    education: [
+      'PGDBM - Marketing & Operation Management (1999)',
+      'B.Sc. PCM (1996)'
+    ],
+    beyondWork: 'Vineet centers his efforts on mentoring young manufacturing technical engineers and applying Theory of Constraints in supply networks.',
+    email: 'vineetkul76@gmail.com',
+    phone: '+91 7069010057',
+    linkedin: 'https://www.linkedin.com/in/Vineetkulshreshtha-46a7674b'
+  }
+];
+

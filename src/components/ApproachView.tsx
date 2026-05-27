@@ -11,14 +11,23 @@ import {
   ClipboardCheck,
   Target
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { APPROACH_STAGES, CASE_STUDIES } from '../data';
 
 interface ApproachViewProps {
   setView: (view: string) => void;
+  activeStageIdx?: number;
+  setActiveStageIdx?: (idx: number | ((prev: number) => number)) => void;
 }
 
-export default function ApproachView({ setView }: ApproachViewProps) {
-  const [activeStageIdx, setActiveStageIdx] = useState(0);
+export default function ApproachView({ 
+  setView,
+  activeStageIdx: overrideStageIdx,
+  setActiveStageIdx: overrideSetStageIdx
+}: ApproachViewProps) {
+  const [internalStageIdx, setInternalStageIdx] = useState(0);
+  const activeStageIdx = overrideStageIdx !== undefined ? overrideStageIdx : internalStageIdx;
+  const setActiveStageIdx = overrideSetStageIdx !== undefined ? overrideSetStageIdx : setInternalStageIdx;
 
   const iconMap: { [key: string]: React.ElementType } = {
     Search, DraftingCompass, PlayCircle, ToggleRight
@@ -110,7 +119,15 @@ export default function ApproachView({ setView }: ApproachViewProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Main stage specifications panel */}
-          <div className="lg:col-span-8 bg-white border border-slate-200 rounded p-6 md:p-8 shadow-sm flex flex-col justify-between">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeStageIdx}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-8 bg-white border border-slate-200 rounded-2xl p-6 md:p-8 shadow-md flex flex-col justify-between"
+            >
             <div className="space-y-6">
               
               {/* Header metrics */}
@@ -148,7 +165,7 @@ export default function ApproachView({ setView }: ApproachViewProps) {
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {activeStage.details.map((detail, index) => (
-                    <div key={index} className="flex items-start space-x-2 p-3 bg-slate-50 rounded border border-slate-150 text-left">
+                    <div key={index} className="flex items-start space-x-2 p-3 bg-slate-50 rounded-xl border border-slate-150 text-left">
                       <CheckCircle2 className="h-4 w-4 text-[#0066CC] shrink-0 mt-0.5" />
                       <span className="text-xs text-slate-650 font-semibold">{detail}</span>
                     </div>
@@ -179,17 +196,18 @@ export default function ApproachView({ setView }: ApproachViewProps) {
               <button
                 id="methodology-next-stage-btn"
                 onClick={handleNextStage}
-                className="text-xs font-bold px-4 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 cursor-pointer rounded focus:outline-none transition-colors inline-flex items-center space-x-1.5"
+                className="text-xs font-bold px-4 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-800 cursor-pointer rounded-xl focus:outline-none transition-colors inline-flex items-center space-x-1.5"
               >
                 <span>Cycle Stages</span>
                 <ArrowRight className="h-3.5 w-3.5 text-[#FF6B35]" />
               </button>
             </div>
 
-          </div>
+          </motion.div>
+          </AnimatePresence>
 
           {/* SIDEBAR: Active methodology Stage case study reference */}
-          <div className="lg:col-span-4 bg-[#003366] text-white rounded p-6 flex flex-col justify-between border border-white/5 shadow-sm space-y-6 text-left">
+          <div className="lg:col-span-4 bg-[#003366] text-white rounded-2xl p-6 flex flex-col justify-between border border-white/5 shadow-md space-y-6 text-left">
             <div className="space-y-4">
               <div className="flex items-center space-x-2 text-[10px] font-extrabold text-[#FF6B35] uppercase font-mono tracking-wider">
                 <Target className="h-4 w-4" />

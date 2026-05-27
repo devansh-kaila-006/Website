@@ -92,3 +92,24 @@ export interface ContactFormInput {
   message: string;
   preferredContact: 'email' | 'phone';
 }
+
+export interface LeaderProfile {
+  id: string;
+  name: string;
+  title: string;
+  experienceYears: number;
+  location: string;
+  photoUrl: string;
+  tagline: string;
+  bioParagraphs: string[];
+  coreExpertise: string[];
+  credentials: string[];
+  industriesServed: { name: string; years: number }[];
+  notableAchievements: string[];
+  education: string[];
+  beyondWork?: string;
+  email?: string;
+  phone?: string;
+  linkedin?: string;
+}
+

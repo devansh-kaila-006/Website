@@ -13,6 +13,7 @@ import {
   ShieldCheck,
   CheckCircle2
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ContactFormInput } from '../types';
 
 export default function ContactView() {
@@ -85,13 +86,19 @@ export default function ContactView() {
       {/* Page Header */}
       <section className="bg-slate-50 border-b border-slate-150 py-12 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="text-xxs font-mono font-bold text-[#FF6B35] uppercase tracking-wider block mb-2">PARTNER WITH US</span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-[#003366] tracking-tight">
-            Schedule a Scoping Consultation
-          </h1>
-          <p className="text-xs md:text-sm text-slate-500 max-w-2xl mt-1.5 leading-relaxed font-medium">
-            Ready to isolate waste, optimize cycle times, and improve margins? Fill out our checklist to trigger a customized operational diagnostic assessment.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="text-xxs font-mono font-bold text-[#FF6B35] uppercase tracking-wider block mb-2">PARTNER WITH US</span>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#003366] tracking-tight">
+              Schedule a Scoping Consultation
+            </h1>
+            <p className="text-xs md:text-sm text-slate-500 max-w-2xl mt-1.5 leading-relaxed font-semibold">
+              Ready to isolate waste, optimize cycle times, and improve margins? Fill out our checklist to trigger a customized operational diagnostic assessment.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -100,7 +107,13 @@ export default function ContactView() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* LEFT: Complete lead capture Contact Form */}
-          <div className="lg:col-span-7 bg-white rounded border border-slate-200 p-6 md:p-8 shadow-sm">
+          <motion.div 
+            id="book-consultation"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+            className="lg:col-span-7 bg-white rounded border border-slate-200 p-6 md:p-8 shadow-sm"
+          >
             <h3 className="text-lg font-extrabold text-[#003366] leading-tight mb-1 uppercase tracking-tight">
               Confidential Scoping Brief
             </h3>
@@ -108,213 +121,241 @@ export default function ContactView() {
               All submissions are encrypted and NDA-protected
             </p>
 
-            {success ? (
-              <div id="contact-success-notice" className="p-8 bg-emerald-50 rounded border-2 border-dashed border-emerald-500/40 text-center space-y-4 animate-in zoom-in-95 duration-200">
-                <CheckCircle2 className="h-10 w-10 text-emerald-600 mx-auto animate-bounce" />
-                <h4 className="text-base font-extrabold text-[#003366]">Thank you! Request Submitted.</h4>
-                <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed font-semibold">
-                  We have successfully registered your corporate brief. A Senior Process Engineer will analyze your parameters and email you within **24 hours** to confirm discovery session scheduling options.
-                </p>
-                <button
-                  id="reset-form-success-btn"
-                  onClick={() => setSuccess(false)}
-                  className="px-5 py-2.5 bg-[#003366] text-white hover:bg-[#FF6B35] font-bold rounded text-xs tracking-wider uppercase transition-colors"
+            <AnimatePresence mode="wait">
+              {success ? (
+                <motion.div 
+                  key="success-message"
+                  initial={{ opacity: 0, scale: 0.97 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  id="contact-success-notice" 
+                  className="p-8 bg-emerald-50 rounded border-2 border-dashed border-emerald-500/40 text-center space-y-4"
                 >
-                  Submit Another Brief
-                </button>
-              </div>
-            ) : (
-              <form id="scoping-brief-form" onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Name field */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact_name" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="contact_name"
-                      name="contact_name"
-                      value={form.name}
-                      onChange={(e) => setForm({ ...form, name: e.target.value })}
-                      placeholder="Jane Doe"
-                      className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
-                        errors.name ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
-                      }`}
-                    />
-                    {errors.name && <p className="text-3xs font-semibold text-red-500 leading-none">{errors.name}</p>}
-                  </div>
-
-                  {/* Corporate email field */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact_email" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
-                      Corporate Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="contact_email"
-                      name="contact_email"
-                      value={form.email}
-                      onChange={(e) => setForm({ ...form, email: e.target.value })}
-                      placeholder="e.g. jdoe@company.com"
-                      className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
-                        errors.email ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
-                      }`}
-                    />
-                    {errors.email && <p className="text-3xs font-semibold text-red-500 leading-none">{errors.email}</p>}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Company Name */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact_company" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
-                      Company Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="contact_company"
-                      name="contact_company"
-                      value={form.company}
-                      onChange={(e) => setForm({ ...form, company: e.target.value })}
-                      placeholder="Enterprise Enterprises"
-                      className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
-                        errors.company ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
-                      }`}
-                    />
-                    {errors.company && <p className="text-3xs font-semibold text-red-500 leading-none">{errors.company}</p>}
-                  </div>
-
-                  {/* Industry list dropdown */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact_industry" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
-                      Core Sector
-                    </label>
-                    <select
-                      id="contact_industry"
-                      name="contact_industry"
-                      value={form.industry}
-                      onChange={(e) => setForm({ ...form, industry: e.target.value })}
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded focus:outline-none focus:ring-[#0066CC] focus:border-[#0066CC] font-semibold text-slate-700"
-                    >
-                      <option value="Manufacturing">Manufacturing & Heavy Industry</option>
-                      <option value="IT">IT, Tech & Services</option>
-                      <option value="Healthcare">Healthcare & Clinical Networks</option>
-                      <option value="Supply Chain">Supply Chain & Logistics</option>
-                      <option value="Retail">Retail & Multi-site Outlets</option>
-                      <option value="Other">Other Specialty Area</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Services dropdown options */}
-                  <div className="space-y-1.5">
-                    <label htmlFor="contact_service" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
-                      Service of Interest
-                    </label>
-                    <select
-                      id="contact_service"
-                      name="contact_service"
-                      value={form.serviceOfInterest}
-                      onChange={(e) => setForm({ ...form, serviceOfInterest: e.target.value })}
-                      className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded focus:outline-none focus:ring-[#0066CC] focus:border-[#0066CC] font-semibold text-slate-700"
-                    >
-                      <option value="General Inquiry">General Scoping Inquiry</option>
-                      <option value="Business Excellence">Business Excellence System</option>
-                      <option value="Cost Optimization">Cost Optimization Program</option>
-                      <option value="Systems Excellence">Systems & Process Excellence</option>
-                      <option value="HR Relations">HR & Industrial Relations</option>
-                      <option value="Project Management">Project Management Office</option>
-                      <option value="Throughput reduction">Throughput Time Reduction</option>
-                      <option value="Innovation Transformation">Innovation & Transformation</option>
-                    </select>
-                  </div>
-
-                  {/* Preferred contact mode radio toggle */}
-                  <div className="space-y-1.5">
-                    <label className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest block">
-                      Preferred Response Method
-                    </label>
-                    <div className="flex items-center space-x-6 py-2">
-                      <label className="inline-flex items-center space-x-2 text-xs text-slate-650 font-bold cursor-pointer">
-                        <input
-                          type="radio"
-                          name="preferredContact"
-                          value="email"
-                          checked={form.preferredContact === 'email'}
-                          onChange={() => setForm({ ...form, preferredContact: 'email' })}
-                          className="text-[#0066CC] focus:ring-[#0066CC] h-4 w-4"
-                        />
-                        <span>Email Message</span>
+                  <CheckCircle2 className="h-10 w-10 text-emerald-600 mx-auto animate-bounce" />
+                  <h4 className="text-base font-extrabold text-[#003366]">Thank you! Request Submitted.</h4>
+                  <p className="text-xs text-slate-600 max-w-md mx-auto leading-relaxed font-semibold">
+                    We have successfully registered your corporate brief. A Senior Process Engineer will analyze your parameters and email you within **24 hours** to confirm discovery session scheduling options.
+                  </p>
+                  <motion.button
+                    id="reset-form-success-btn"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() => setSuccess(false)}
+                    className="px-5 py-2.5 bg-[#003366] text-white hover:bg-[#FF6B35] font-bold rounded text-xs tracking-wider uppercase transition-colors cursor-pointer"
+                  >
+                    Submit Another Brief
+                  </motion.button>
+                </motion.div>
+              ) : (
+                <motion.form 
+                  key="contact-form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  id="scoping-brief-form" 
+                  onSubmit={handleSubmit} 
+                  className="space-y-4"
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Name field */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="contact_name" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
+                        Full Name *
                       </label>
-                      <label className="inline-flex items-center space-x-2 text-xs text-slate-650 font-bold cursor-pointer">
-                        <input
-                          type="radio"
-                          name="preferredContact"
-                          value="phone"
-                          checked={form.preferredContact === 'phone'}
-                          onChange={() => setForm({ ...form, preferredContact: 'phone' })}
-                          className="text-[#0066CC] focus:ring-[#0066CC] h-4 w-4"
-                        />
-                        <span>Callback Call</span>
+                      <input
+                        type="text"
+                        id="contact_name"
+                        name="contact_name"
+                        value={form.name}
+                        onChange={(e) => setForm({ ...form, name: e.target.value })}
+                        placeholder="Jane Doe"
+                        className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
+                          errors.name ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
+                        }`}
+                      />
+                      {errors.name && <p className="text-3xs font-semibold text-red-500 leading-none">{errors.name}</p>}
+                    </div>
+
+                    {/* Corporate email field */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="contact_email" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
+                        Corporate Email *
                       </label>
+                      <input
+                        type="email"
+                        id="contact_email"
+                        name="contact_email"
+                        value={form.email}
+                        onChange={(e) => setForm({ ...form, email: e.target.value })}
+                        placeholder="e.g. jdoe@company.com"
+                        className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
+                          errors.email ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
+                        }`}
+                      />
+                      {errors.email && <p className="text-3xs font-semibold text-red-500 leading-none">{errors.email}</p>}
                     </div>
                   </div>
-                </div>
 
-                {/* Scoping summary text requirements */}
-                <div className="space-y-1.5">
-                  <label htmlFor="contact_message" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
-                    Operational Scoping Summary *
-                  </label>
-                  <textarea
-                    id="contact_message"
-                    name="contact_message"
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    placeholder="E.g. We seek to compress our raw shipping setups, shorten material inventories, or streamline team hand-offs..."
-                    className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
-                      errors.message ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
-                    }`}
-                  ></textarea>
-                  {errors.message ? (
-                    <p className="text-3xs font-semibold text-red-500 leading-none">{errors.message}</p>
-                  ) : (
-                    <p className="text-[10px] text-slate-400 font-mono italic">Please summarize current process speeds or bottleneck points.</p>
-                  )}
-                </div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Company Name */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="contact_company" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
+                        Company Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="contact_company"
+                        name="contact_company"
+                        value={form.company}
+                        onChange={(e) => setForm({ ...form, company: e.target.value })}
+                        placeholder="Enterprise Enterprises"
+                        className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
+                          errors.company ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
+                        }`}
+                      />
+                      {errors.company && <p className="text-3xs font-semibold text-red-500 leading-none">{errors.company}</p>}
+                    </div>
 
-                <div className="pt-3">
-                  <button
-                    type="submit"
-                    id="scoping-submit-btn"
-                    disabled={loading}
-                    className="w-full py-3 bg-[#FF6B35] hover:bg-[#e85a2a] disabled:bg-slate-400 text-white font-bold uppercase tracking-wider text-xs rounded transition-all duration-150 inline-flex items-center justify-center space-x-2 focus:outline-none"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        <span>Sending Briefing Packet...</span>
-                      </>
+                    {/* Industry list dropdown */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="contact_industry" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
+                        Core Sector
+                      </label>
+                      <select
+                        id="contact_industry"
+                        name="contact_industry"
+                        value={form.industry}
+                        onChange={(e) => setForm({ ...form, industry: e.target.value })}
+                        className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded focus:outline-none focus:ring-[#0066CC] focus:border-[#0066CC] font-semibold text-slate-700"
+                      >
+                        <option value="Manufacturing">Manufacturing & Heavy Industry</option>
+                        <option value="IT">IT, Tech & Services</option>
+                        <option value="Healthcare">Healthcare & Clinical Networks</option>
+                        <option value="Supply Chain">Supply Chain & Logistics</option>
+                        <option value="Retail">Retail & Multi-site Outlets</option>
+                        <option value="Other">Other Specialty Area</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Services dropdown options */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="contact_service" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
+                        Service of Interest
+                      </label>
+                      <select
+                        id="contact_service"
+                        name="contact_service"
+                        value={form.serviceOfInterest}
+                        onChange={(e) => setForm({ ...form, serviceOfInterest: e.target.value })}
+                        className="w-full px-3 py-2 text-xs bg-slate-50 border border-slate-300 rounded focus:outline-none focus:ring-[#0066CC] focus:border-[#0066CC] font-semibold text-slate-700"
+                      >
+                        <option value="General Inquiry">General Scoping Inquiry</option>
+                        <option value="Business Excellence">Business Excellence System</option>
+                        <option value="Cost Optimization">Cost Optimization Program</option>
+                        <option value="Systems Excellence">Systems & Process Excellence</option>
+                        <option value="HR Relations">HR & Industrial Relations</option>
+                        <option value="Project Management">Project Management Office</option>
+                        <option value="Throughput reduction">Throughput Time Reduction</option>
+                        <option value="Innovation Transformation">Innovation & Transformation</option>
+                      </select>
+                    </div>
+
+                    {/* Preferred contact mode radio toggle */}
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest block">
+                        Preferred Response Method
+                      </label>
+                      <div className="flex items-center space-x-6 py-2">
+                        <label className="inline-flex items-center space-x-2 text-xs text-slate-650 font-bold cursor-pointer">
+                          <input
+                            type="radio"
+                            name="preferredContact"
+                            value="email"
+                            checked={form.preferredContact === 'email'}
+                            onChange={() => setForm({ ...form, preferredContact: 'email' })}
+                            className="text-[#0066CC] focus:ring-[#0066CC] h-4 w-4"
+                          />
+                          <span>Email Message</span>
+                        </label>
+                        <label className="inline-flex items-center space-x-2 text-xs text-slate-650 font-bold cursor-pointer">
+                          <input
+                            type="radio"
+                            name="preferredContact"
+                            value="phone"
+                            checked={form.preferredContact === 'phone'}
+                            onChange={() => setForm({ ...form, preferredContact: 'phone' })}
+                            className="text-[#0066CC] focus:ring-[#0066CC] h-4 w-4"
+                          />
+                          <span>Callback Call</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Scoping summary text requirements */}
+                  <div className="space-y-1.5">
+                    <label htmlFor="contact_message" className="text-[10px] font-extrabold text-slate-500 font-mono uppercase tracking-widest">
+                      Operational Scoping Summary *
+                    </label>
+                    <textarea
+                      id="contact_message"
+                      name="contact_message"
+                      rows={4}
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      placeholder="E.g. We seek to compress our raw shipping setups, shorten material inventories, or streamline team hand-offs..."
+                      className={`w-full px-3 py-2 text-xs bg-slate-50 border rounded focus:outline-none focus:ring-1 transition-all font-semibold ${
+                        errors.message ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-[#0066CC] focus:border-[#0066CC]'
+                      }`}
+                    ></textarea>
+                    {errors.message ? (
+                      <p className="text-3xs font-semibold text-red-500 leading-none">{errors.message}</p>
                     ) : (
-                      <>
-                        <Send className="h-3.5 w-3.5" />
-                        <span>Request Scoping Consultation →</span>
-                      </>
+                      <p className="text-[10px] text-slate-400 font-mono italic">Please summarize current process speeds or bottleneck points.</p>
                     )}
-                  </button>
-                </div>
-              </form>
-            )}
-          </div>
+                  </div>
+
+                  <div className="pt-3">
+                    <motion.button
+                      type="submit"
+                      id="scoping-submit-btn"
+                      disabled={loading}
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      className="w-full py-3 bg-[#FF6B35] hover:bg-[#e85a2a] disabled:bg-slate-400 text-white font-bold uppercase tracking-wider text-xs rounded transition-all duration-150 inline-flex items-center justify-center space-x-2 focus:outline-none cursor-pointer"
+                    >
+                      {loading ? (
+                        <>
+                          <Loader2 className="h-4 w-4 animate-spin" />
+                          <span>Sending Briefing Packet...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-3.5 w-3.5" />
+                          <span>Request Scoping Consultation →</span>
+                        </>
+                      )}
+                    </motion.button>
+                  </div>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </motion.div>
 
           {/* RIGHT: Corporate Offices & Contact Information */}
           <div className="lg:col-span-5 space-y-8 text-slate-800">
             
             {/* Direct addresses card */}
-            <div className="bg-slate-50 border border-slate-200 rounded p-6 shadow-sm space-y-4 text-left">
+            <motion.div 
+              id="office_locations"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              whileHover={{ y: -2 }}
+              className="bg-slate-50 border border-slate-200 rounded p-6 shadow-sm space-y-4 text-left cursor-default"
+            >
               <h4 className="text-[10px] font-extrabold font-mono text-[#003366] uppercase tracking-widest border-b border-slate-200 pb-2">
                 Corporate Headquarters
               </h4>
@@ -340,10 +381,16 @@ export default function ContactView() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/* Security Guarantee banner */}
-            <div className="p-4 bg-emerald-50 border border-emerald-200 rounded space-y-1.5 flex items-start space-x-3 text-left">
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              whileHover={{ y: -2, backgroundColor: "rgba(236, 253, 245, 0.7)" }}
+              className="p-4 bg-emerald-50 border border-emerald-200 rounded space-y-1.5 flex items-start space-x-3 text-left transition-colors duration-200 cursor-default"
+            >
               <ShieldCheck className="h-5 w-5 text-[#28A745] shrink-0 mt-0.5" />
               <div>
                 <p className="text-[11px] font-extrabold text-[#003366] uppercase tracking-wide leading-none">Strict NDA Compliant</p>
@@ -351,7 +398,7 @@ export default function ContactView() {
                   All shared financial files, workforce metrics, layout diagrams, and competitive configurations are strictly isolated under reciprocal corporate NDAs and data vaults.
                 </p>
               </div>
-            </div>
+            </motion.div>
 
           </div>
 
@@ -374,10 +421,12 @@ export default function ContactView() {
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
             {consultationSteps.map((step, idx) => (
-              <div 
+              <motion.div 
                 key={idx}
                 id={`consultation-lifecycle-step-${step.step}`}
-                className="bg-white border border-slate-200 rounded p-5 shadow-sm space-y-3 relative flex flex-col justify-between text-left"
+                whileHover={{ y: -5, scale: 1.015, borderColor: "#0066CC" }}
+                transition={{ type: "spring", stiffness: 450, damping: 18 }}
+                className="bg-white border border-slate-200 rounded p-5 shadow-sm space-y-3 relative flex flex-col justify-between text-left cursor-default"
               >
                 <div className="space-y-2">
                   <div className="text-[9px] font-extrabold font-mono text-[#0066CC] uppercase tracking-widest">
@@ -396,7 +445,7 @@ export default function ContactView() {
                     <ChevronRight className="h-3.5 w-3.5" />
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
 

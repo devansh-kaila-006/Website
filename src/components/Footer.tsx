@@ -103,6 +103,16 @@ export default function Footer({ setView }: FooterProps) {
               </li>
               <li>
                 <button
+                  id="footer-link-leadership"
+                  onClick={() => handleNav('leadership')}
+                  className="hover:text-[#FF6B35] transition-colors inline-flex items-center space-x-1"
+                >
+                  <ChevronRight className="h-3 w-3 text-[#FF6B35]" />
+                  <span>Our Leadership</span>
+                </button>
+              </li>
+              <li>
+                <button
                   id="footer-link-services"
                   onClick={() => handleNav('services')}
                   className="hover:text-[#FF6B35] transition-colors inline-flex items-center space-x-1"

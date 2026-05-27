@@ -15,6 +15,7 @@ import {
   Sparkles,
   PhoneCall
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { SERVICES_DATA } from '../data';
 
 interface ServicesViewProps {
@@ -87,12 +88,12 @@ export default function ServicesView({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* LEFT COLUMN: Service List Sidebar selector */}
-          <div className="lg:col-span-4 bg-slate-50 rounded p-4 border border-slate-200 space-y-2">
+          <div className="lg:col-span-4 bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-2 relative z-0">
             <h3 className="text-[10px] font-extrabold font-mono text-slate-400 uppercase tracking-widest pl-3 mb-3">
               Service Directory
             </h3>
             
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 relative">
               {SERVICES_DATA.map((service) => {
                 const IconComp = iconMap[service.iconName];
                 const isActive = service.id === activeService.id;
@@ -101,17 +102,24 @@ export default function ServicesView({
                     key={service.id}
                     id={`sidebar-select-service-${service.id}`}
                     onClick={() => setSelectedServiceId(service.id)}
-                    className={`w-full flex items-center space-x-3 p-3.5 rounded text-left text-xs font-bold transition-all duration-155 cursor-pointer ${
+                    className={`relative w-full flex items-center space-x-3 p-3.5 rounded-xl text-left text-xs font-bold transition-colors duration-200 select-none cursor-pointer ${
                       isActive
-                        ? 'bg-[#003366] text-white shadow-sm'
-                        : 'text-slate-705 hover:text-slate-900 hover:bg-slate-200'
+                        ? 'text-white font-extrabold shadow-sm'
+                        : 'text-slate-705 hover:text-slate-900'
                     }`}
                   >
-                    <div className={`p-1.5 rounded ${isActive ? 'bg-white/15 text-white' : 'bg-slate-200 text-slate-500'}`}>
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeServiceSidebarPill"
+                        className="absolute inset-0 bg-[#003366] rounded-xl -z-10"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <div className={`p-1.5 rounded-lg transition-colors duration-200 relative z-10 ${isActive ? 'bg-white/15 text-white' : 'bg-slate-200 text-slate-500'}`}>
                       {IconComp && <IconComp className="h-4 w-4" />}
                     </div>
-                    <span className="truncate flex-grow">{service.title}</span>
-                    <ChevronRight className={`h-4 w-4 shrink-0 transition-transform ${isActive ? 'translate-x-0.5 text-white' : 'text-slate-400'}`} />
+                    <span className="truncate flex-grow relative z-10">{service.title}</span>
+                    <ChevronRight className={`h-4 w-4 shrink-0 transition-transform relative z-10 ${isActive ? 'translate-x-0.5 text-white' : 'text-slate-400'}`} />
                   </button>
                 );
               })}
@@ -126,12 +134,20 @@ export default function ServicesView({
           </div>
 
           {/* RIGHT COLUMN: Selected Service Specification template */}
-          <div className="lg:col-span-8 bg-white rounded border border-slate-200 p-6 md:p-8 shadow-sm space-y-8 animate-in fade-in duration-250">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeService.id}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-8 bg-white rounded-2xl border border-slate-200 p-6 md:p-8 shadow-md space-y-8 text-left"
+            >
             
             {/* Header portion */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100 pb-5 gap-4 text-left">
               <div className="flex items-center space-x-3.5">
-                <div className="p-2.5 bg-[#E6F3FF]/50 text-[#0066CC] rounded">
+                <div className="p-2.5 bg-[#E6F3FF]/50 text-[#0066CC] rounded-lg">
                   {React.createElement(iconMap[activeService.iconName] || Award, { className: "h-6.5 w-6.5" })}
                 </div>
                 <div>
@@ -147,7 +163,7 @@ export default function ServicesView({
               <button
                 id={`discuss-service-top-btn-${activeService.id}`}
                 onClick={() => handleDiscussService(activeService.title)}
-                className="px-4 py-2 bg-[#FF6B35] hover:bg-[#e85a2a] text-white text-xs font-bold uppercase tracking-wider rounded shadow transition-all duration-150 inline-flex items-center space-x-1.5 focus:outline-none cursor-pointer shrink-0"
+                className="px-4 py-2 bg-[#FF6B35] hover:bg-[#e85a2a] text-white text-xs font-bold uppercase tracking-wider rounded-xl shadow transition-all duration-150 inline-flex items-center space-x-1.5 focus:outline-none cursor-pointer shrink-0"
               >
                 <PhoneCall className="h-3.5 w-3.5" />
                 <span>Discuss Program</span>
@@ -176,7 +192,7 @@ export default function ServicesView({
                   return (
                     <div 
                       key={idx} 
-                      className="border border-slate-150 rounded overflow-hidden bg-slate-50 hover:bg-slate-100/50 transition-colors"
+                      className="border border-slate-150 rounded-xl overflow-hidden bg-slate-50 hover:bg-slate-100/50 transition-colors"
                     >
                       <button
                         id={`accordion-toggle-${compKey}`}
@@ -205,7 +221,7 @@ export default function ServicesView({
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
                 {activeService.problemsSolved.map((problem, idx) => (
-                  <div key={idx} className="flex space-x-2.5 p-3.5 bg-rose-50/25 rounded border border-rose-100/50 text-left">
+                  <div key={idx} className="flex space-x-2.5 p-3.5 bg-rose-50/25 rounded-xl border border-rose-100/50 text-left">
                     <AlertTriangle className="h-4 w-4 text-rose-500 shrink-0 mt-0.5" />
                     <p className="text-xs text-slate-700 leading-normal font-semibold">
                       {problem}
@@ -222,7 +238,7 @@ export default function ServicesView({
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {activeService.outcomes.map((out, idx) => (
-                  <div key={idx} className="p-4 bg-[#E6F3FF]/30 text-slate-900 rounded border border-[#0066CC]/15 flex items-center space-x-3.5 text-left">
+                  <div key={idx} className="p-4 bg-[#E6F3FF]/30 text-slate-900 rounded-2xl border border-[#0066CC]/15 flex items-center space-x-3.5 text-left">
                     <div className="text-2xl font-extrabold text-[#0066CC] font-mono tracking-tight shrink-0">
                       {out.metric}
                     </div>
@@ -246,7 +262,7 @@ export default function ServicesView({
                       key={srvId}
                       id={`cross-link-btn-${srvId}`}
                       onClick={() => handleRelatedNav(srvId)}
-                      className="px-2.5 py-1 bg-slate-50 hover:bg-[#E6F3FF] hover:text-[#0066CC] rounded text-[10px] font-bold text-slate-650 border border-slate-200 transition-colors cursor-pointer"
+                      className="px-2.5 py-1 bg-slate-50 hover:bg-[#E6F3FF] hover:text-[#0066CC] rounded-md text-[10px] font-bold text-slate-650 border border-slate-200 transition-colors cursor-pointer"
                     >
                       {targetSrv.title}
                     </button>
@@ -264,7 +280,8 @@ export default function ServicesView({
               </button>
             </div>
 
-          </div>
+          </motion.div>
+        </AnimatePresence>
 
         </div>
       </section>
