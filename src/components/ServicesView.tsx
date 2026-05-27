@@ -73,13 +73,19 @@ export default function ServicesView({
       {/* Services Header */}
       <section className="bg-slate-50 border-b border-slate-150 py-12 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="text-xxs font-mono font-bold text-[#FF6B35] uppercase tracking-wider block mb-2">OUR CAPABILITIES</span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-[#003366] tracking-tight">
-            Comprehensive Operational Services (7)
-          </h1>
-          <p className="text-xs md:text-sm text-slate-500 max-w-2xl mt-1.5 leading-relaxed font-semibold">
-            Discover our tailored operational frameworks designed to optimize costs, streamline systems, upskill workforces, and accelerate cycle times.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="text-xxs font-mono font-bold text-[#FF6B35] uppercase tracking-wider block mb-2">OUR CAPABILITIES</span>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#003366] tracking-tight">
+              Comprehensive Operational Services (7)
+            </h1>
+            <p className="text-xs md:text-sm text-slate-500 max-w-2xl mt-1.5 leading-relaxed font-semibold">
+              Discover our tailored operational frameworks designed to optimize costs, streamline systems, upskill workforces, and accelerate cycle times.
+            </p>
+          </motion.div>
         </div>
       </section>
 
@@ -88,7 +94,12 @@ export default function ServicesView({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* LEFT COLUMN: Service List Sidebar selector */}
-          <div className="lg:col-span-4 bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-2 relative z-0">
+          <motion.div 
+            initial={{ opacity: 0, x: -15 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+            className="lg:col-span-4 bg-slate-50 rounded-2xl p-4 border border-slate-200 space-y-2 relative z-0"
+          >
             <h3 className="text-[10px] font-extrabold font-mono text-slate-400 uppercase tracking-widest pl-3 mb-3">
               Service Directory
             </h3>
@@ -105,7 +116,7 @@ export default function ServicesView({
                     className={`relative w-full flex items-center space-x-3 p-3.5 rounded-xl text-left text-xs font-bold transition-colors duration-200 select-none cursor-pointer ${
                       isActive
                         ? 'text-white font-extrabold shadow-sm'
-                        : 'text-slate-705 hover:text-slate-900'
+                        : 'text-slate-750 hover:text-slate-900'
                     }`}
                   >
                     {isActive && (
@@ -131,7 +142,7 @@ export default function ServicesView({
                 All client metrics, organizational designs, and transformation blueprints are secured under rigorous non-disclosure agreements (NDAs).
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT COLUMN: Selected Service Specification template */}
           <AnimatePresence mode="wait">

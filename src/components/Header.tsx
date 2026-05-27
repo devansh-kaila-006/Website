@@ -49,19 +49,43 @@ export default function Header({
     { id: 'contact', label: 'Contact' },
   ];
 
+  const pollAndScrollTo = (elementId: string) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      setTimeout(() => {
+        const el = document.getElementById(elementId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50); // Small timeout to allow active transition layouts to settle heights
+      return;
+    }
+    
+    let attempts = 0;
+    const interval = setInterval(() => {
+      const el = document.getElementById(elementId);
+      if (el) {
+        setTimeout(() => {
+          const currentEl = document.getElementById(elementId);
+          if (currentEl) {
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 50);
+        clearInterval(interval);
+      }
+      attempts++;
+      if (attempts > 30) { // Max 1.5 seconds polling to wait for AnimatePresence mode="wait" transition
+        clearInterval(interval);
+      }
+    }, 50);
+  };
+
   const handleNav = (viewId: string, sectionId?: string) => {
     setView(viewId);
     setIsOpen(false);
     setHoveredItem(null);
     if (sectionId) {
-      setTimeout(() => {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-      }, 150);
+      pollAndScrollTo(sectionId);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -72,7 +96,7 @@ export default function Header({
       setSelectedServiceId(serviceId);
     }
     setView('services');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    pollAndScrollTo('services-page-container');
   };
 
   const selectIndustry = (industryId: string) => {
@@ -80,7 +104,7 @@ export default function Header({
       setActiveIndustryId(industryId);
     }
     setView('industries');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    pollAndScrollTo('industries-page-container');
   };
 
   const selectApproachIdx = (stageIdx: number) => {
@@ -88,7 +112,7 @@ export default function Header({
       setActiveStageIdx(stageIdx);
     }
     setView('approach');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    pollAndScrollTo('approach-page-container');
   };
 
   const toggleMobileSubmenu = (itemId: string, e: React.MouseEvent) => {
@@ -110,10 +134,10 @@ export default function Header({
     switch (itemId) {
       case 'home':
         return [
-          { label: 'Overview & Highlights', desc: 'Surgical capability markers, cost & efficiency stats.', action: () => handleNav('home') },
-          { label: 'Why Partner With Us', desc: 'Empirical baselines, local presence, and customized floor protocols.', action: () => handleNav('home', 'why-us-section') },
-          { label: 'Interactive Diagnostics', desc: 'Assess target outcome metrics dynamically for your sector.', action: () => handleNav('home', 'hero-diagnostic-preview') },
-          { label: 'Operating Footprints', desc: 'Trusted vertical sectors across major Indian industrial hubs.', action: () => handleNav('home', 'trust-indicator-section') },
+          { label: 'Core Transformation Goals', desc: 'Overview of our target delivery objectives focusing on cost leadership and high performance.', action: () => handleNav('home', 'hero-section') },
+          { label: 'Competitive Value Edge', desc: 'Learn why our boots-on-the-ground floor practices outshine standard strategy-only slide deck agencies.', action: () => handleNav('home', 'why-us-section') },
+          { label: 'Interactive Benchmark Tracker', desc: 'Assess operational output benchmarks, lead times, and resource efficiencies dynamically.', action: () => handleNav('home', 'hero-diagnostic-preview') },
+          { label: 'Sector Advisory Footprints', desc: 'Explore historical client trust indicators across major industrial verticals in India.', action: () => handleNav('home', 'trust-indicator-section') },
         ];
       case 'about':
         return [
@@ -131,12 +155,12 @@ export default function Header({
       case 'services':
         return [
           { label: 'Business Excellence', desc: 'Establish DMS, Hoshin Kanri goals, and structured daily meetings.', action: () => selectService('business_excellence') },
-          { label: 'Systems Excellence', desc: 'Deploy automated process maps, custom CRM, and ERP controls.', action: () => selectService('systems_excellence') },
-          { label: 'Theory of Constraints (TOC)', desc: 'Accelerate OTIF metrics to 99% alongside compressing lead times.', action: () => selectService('throughput_reduction') },
-          { label: 'Supply Chain & Sourcing', desc: 'Upgrade operational pick paths, supplier networks, and port speed indices.', action: () => selectService('project_management') },
-          { label: 'Cost Optimization Program', desc: 'Surgically optimize yield recovery and scale down overhead waste.', action: () => selectService('cost_optimization') },
-          { label: 'Industrial Relations & HR', desc: 'Align floor capabilities, standard shifts, and team metrics.', action: () => selectService('hr_relations') },
-          { label: 'Innovation & Growth Advisory', desc: 'Map out mid-to-long term digital technology roadmaps.', action: () => selectService('innovation_transformation') },
+          { label: 'Systems & Process Excellence', desc: 'Re-engineer cluttered core processes to establish lean, reproducible standard practices.', action: () => selectService('systems_excellence') },
+          { label: 'Throughput Time Reduction', desc: 'Drastically shrink turnaround times to build superior responsiveness and unlock market capacity.', action: () => selectService('throughput_reduction') },
+          { label: 'Project Management', desc: 'Establish rigorous execution rules to deliver complex business transformation programs on time.', action: () => selectService('project_management') },
+          { label: 'Cost Optimization', desc: 'Eliminate waste and structural overheads to drive immediate bottom-line cashflow benefits.', action: () => selectService('cost_optimization') },
+          { label: 'HR & Industrial Relations', desc: 'Align organizational culture and personnel policies to eliminate operational interruptions.', action: () => selectService('hr_relations') },
+          { label: 'Innovation & Transformation', desc: 'Infuse intelligent workflows and emerging automation solutions into proven operating models.', action: () => selectService('innovation_transformation') },
         ];
       case 'approach':
         return [

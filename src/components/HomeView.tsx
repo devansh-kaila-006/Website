@@ -139,7 +139,6 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
                   <div className="h-2 w-2 rounded-sm bg-[#FF6B35]"></div>
                   <span className="text-xxs font-extrabold text-[#003366] uppercase tracking-widest font-mono">Live Benchmark Tracker</span>
                 </div>
-                <span className="text-[9px] text-slate-400 uppercase font-mono font-bold tracking-tight">Verified Benchmarks</span>
               </div>
 
               <div className="space-y-3">
@@ -162,7 +161,6 @@ export default function HomeView({ setView, setSelectedServiceId }: HomeViewProp
                       </div>
                       <div className="text-right ml-2 shrink-0">
                         <span className="block text-base font-extrabold text-[#003366] font-mono tracking-tight">{metric.value}</span>
-                        <span className="block text-[8px] font-bold text-[#28A745] uppercase tracking-widest font-mono">Verified</span>
                       </div>
                     </div>
                   );

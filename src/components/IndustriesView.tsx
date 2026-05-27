@@ -51,19 +51,30 @@ export default function IndustriesView({
       {/* Page Header */}
       <section className="bg-slate-50 border-b border-slate-150 py-12 text-left">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <span className="text-xxs font-mono font-bold text-[#FF6B35] uppercase tracking-wider block mb-2">VERTICAL MARKETS</span>
-          <h1 className="text-3xl md:text-5xl font-extrabold text-[#003366] tracking-tight">
-            Vertical Markets Served
-          </h1>
-          <p className="text-xs md:text-sm text-slate-500 max-w-2xl mt-1.5 leading-relaxed font-semibold">
-            We adapt process engineering protocols to survive key operational boundaries inside manufacturing, tech systems, logistics, clinical loops, and retail chains.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="text-xxs font-mono font-bold text-[#FF6B35] uppercase tracking-wider block mb-2">VERTICAL MARKETS</span>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-[#003366] tracking-tight">
+              Vertical Markets Served
+            </h1>
+            <p className="text-xs md:text-sm text-slate-500 max-w-2xl mt-1.5 leading-relaxed font-semibold">
+              We adapt process engineering protocols to survive key operational boundaries inside manufacturing, tech systems, logistics, clinical loops, and retail chains.
+            </p>
+          </motion.div>
         </div>
       </section>
 
       {/* HORIZONTAL TAB SWITCHER */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 relative z-0">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+          className="grid grid-cols-2 md:grid-cols-5 gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 relative z-0"
+        >
           {INDUSTRIES_DATA.map((ind) => {
             const IndIconComp = iconMap[ind.iconName];
             const isSelected = activeIndTab === ind.id;
@@ -91,7 +102,7 @@ export default function IndustriesView({
               </button>
             );
           })}
-        </div>
+        </motion.div>
       </section>
 
       {/* ACTIVE INDUSTRY CONTENT CARD */}
