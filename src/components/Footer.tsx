@@ -1,23 +1,11 @@
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Linkedin, Twitter, CheckCircle2, ChevronRight, Building2 } from 'lucide-react';
+import React from 'react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, ChevronRight, Building2 } from 'lucide-react';
 
 interface FooterProps {
   setView: (view: string) => void;
 }
 
 export default function Footer({ setView }: FooterProps) {
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newsletterEmail.trim() && newsletterEmail.includes('@')) {
-      setSubmitted(true);
-      setTimeout(() => {
-        setNewsletterEmail('');
-      }, 3000);
-    }
-  };
 
   const handleNav = (viewId: string) => {
     setView(viewId);
@@ -169,45 +157,6 @@ export default function Footer({ setView }: FooterProps) {
             </div>
           </div>
 
-          {/* Newsletter section */}
-          <div>
-            <h4 className="text-white font-bold text-base tracking-wide mb-4 uppercase">
-              Operational Insights
-            </h4>
-            <p className="text-slate-300 text-sm mb-3.5">
-              Receive our monthly newsletter with actionable process tips and custom frameworks.
-            </p>
-            {submitted ? (
-              <div id="footer-newsletter-success" className="flex items-center space-x-2 p-3 bg-white/10 rounded border border-green-500/30 text-green-400">
-                <CheckCircle2 className="h-5 w-5 shrink-0" />
-                <span className="text-xs font-medium">Successfully subscribed!</span>
-              </div>
-            ) : (
-              <form id="footer-newsletter-form" onSubmit={handleSubscribe} className="space-y-2">
-                <div className="flex">
-                  <input
-                    type="email"
-                    id="footer-newsletter-email-input"
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Corporate email..."
-                    required
-                    className="w-full px-3.5 py-2 bg-white/10 border border-white/20 rounded-l text-sm text-white placeholder-slate-400 focus:outline-none focus:border-[#FF6B35] focus:ring-1 focus:ring-[#FF6B35] transition-all"
-                  />
-                  <button
-                    type="submit"
-                    id="footer-newsletter-submit-btn"
-                    className="px-4 py-2 bg-[#FF6B35] hover:bg-[#e0521e] text-white text-xs font-bold rounded-r transition-colors"
-                  >
-                    Join
-                  </button>
-                </div>
-              </form>
-            )}
-            <p className="text-xxs text-slate-400 mt-2">
-              Unsubscribe anytime. We respect your data confidentiality.
-            </p>
-          </div>
 
         </div>
 
