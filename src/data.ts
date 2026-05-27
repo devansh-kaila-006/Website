@@ -593,7 +593,8 @@ export const LEADERSHIP_DATA: LeaderProfile[] = [
     ],
     beyondWork: 'Rajnish researches digital operations scalability and actively supports youth tech bootcamps in Punjab.',
     email: 'rajnishkaila76@gmail.com',
-    phone: '+91 9872422589'
+    phone: '+91 9872422589',
+    linkedin: 'https://www.linkedin.com/in/rajnish-kaila-259a36113/'
   },
   {
     id: 'vineet_kulshreshtha',
@@ -638,7 +639,7 @@ export const LEADERSHIP_DATA: LeaderProfile[] = [
     beyondWork: 'Vineet centers his efforts on mentoring young manufacturing technical engineers and applying Theory of Constraints in supply networks.',
     email: 'vineetkul76@gmail.com',
     phone: '+91 7069010057',
-    linkedin: 'https://www.linkedin.com/in/Vineetkulshreshtha-46a7674b'
+    linkedin: 'https://www.linkedin.com/in/vineet-kulshreshtha-46a7674b/'
   }
 ];
 
