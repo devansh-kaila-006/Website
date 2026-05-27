@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Building2, PhoneCall, ChevronDown, Link } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import logo from '../logo.png';
 
 interface HeaderProps {
   currentView: string;
@@ -208,19 +209,9 @@ export default function Header({
           <button
             id="nav-logo-btn"
             onClick={() => handleNav('home')}
-            className="flex items-center space-x-2.5 text-left group focus:outline-none"
+            className="flex items-center text-left group focus:outline-none"
           >
-            <div className="w-8 h-8 bg-[#003366] rounded-lg flex items-center justify-center text-white group-hover:bg-[#0066CC] transition-colors duration-200 shrink-0">
-              <Building2 className="h-4.5 w-4.5" />
-            </div>
-            <div>
-              <span className="block text-lg font-extrabold tracking-tight text-[#003366] uppercase leading-none">
-                MAYNIT
-              </span>
-              <span className="block text-[8px] tracking-wider text-slate-500 uppercase font-mono leading-none mt-0.5">
-                Business Transformation Excellence
-              </span>
-            </div>
+            <img src={logo} alt="Maynit Logo" className="h-10 w-auto" />
           </button>
 
           {/* Desktop Nav with hover dropdown menus */}
