@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ContactFormInput } from '../types';
+import { getSupabase } from '../lib/supabaseClient';
 
 export default function ContactView() {
   const [form, setForm] = useState<ContactFormInput>({
@@ -35,7 +36,7 @@ export default function ContactView() {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const tempErrors: { [key: string]: string } = {};
 
@@ -56,9 +57,30 @@ export default function ContactView() {
     setErrors({});
     setLoading(true);
 
-    // Simulate database post and admin email dispatch triggers
-    setTimeout(() => {
+    const supabase = getSupabase();
+    if (!supabase) {
+      setErrors({ message: 'Submission configuration error. Please try again later.' });
       setLoading(false);
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('consultation_requests')
+        .insert([
+          {
+            name: form.name,
+            email: form.email,
+            company: form.company,
+            industry: form.industry,
+            service_of_interest: form.serviceOfInterest, // DB column naming convention
+            message: form.message,
+            preferred_contact_method: form.preferredContact // DB column naming convention
+          },
+        ]);
+
+      if (error) throw error;
+
       setSuccess(true);
       setForm({
         name: '',
@@ -69,7 +91,12 @@ export default function ContactView() {
         message: '',
         preferredContact: 'email'
       });
-    }, 1800);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      setErrors({ message: 'Submission failed. Please try again later.' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const consultationSteps = [
