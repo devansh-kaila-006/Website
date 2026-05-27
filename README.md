@@ -1,20 +1,20 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Maynit - Business Transformation Consulting
 
-# Run and deploy your AI Studio app
+Maynit is a business transformation consulting firm based in Ludhiana, Punjab. We help businesses reduce costs, improve efficiency, and streamline operations through proven methodologies.
 
-This contains everything you need to run your app locally.
+## About this App
 
-View your app in AI Studio: https://ai.studio/apps/2c707904-4ffd-4c50-8aed-23f801d46185
+This application serves as the digital presence for Maynit, providing information on our services, approach, and contact details to help prospective clients engage with our business solutions.
 
-## Run Locally
+## Features
 
-**Prerequisites:**  Node.js
+- **Service Showcase**: Detailed information about our consulting methodologies.
+- **Approach & Industries**: Insights into how we drive business transformation.
+- **Consultation Portal**: Easy way for businesses to request a consultation.
 
+## Getting Started
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+1. Clone this repository.
+2. Ensure you have Node.js installed.
+3. Install dependencies: `npm install`.
+4. Run the development server: `npm run dev`.
