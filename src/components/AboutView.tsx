@@ -65,7 +65,7 @@ export default function AboutView({ setView }: AboutViewProps) {
               Our Story & Methodology Focus
             </h1>
             <p className="text-xs md:text-sm text-slate-500 max-w-2xl mt-2 leading-relaxed font-semibold">
-              Maynit is a business transformation and consulting firm based in Ludhiana, Punjab, focused on converting complex organizational blockages into clear, streamlined routines.
+              Maynit is a business transformation and consulting firm with offices in Ludhiana, Punjab & Surat, Gujarat, focused on converting complex organizational blockages into clear, streamlined routines.
             </p>
           </motion.div>
         </div>
@@ -370,7 +370,7 @@ export default function AboutView({ setView }: AboutViewProps) {
               Meet Our Leadership
             </h3>
             <p className="text-xs text-slate-500 max-w-lg mx-auto leading-normal">
-              Maynit is powered by operational transformation experts with deep sector knowledge and multi-industry execution records in Punjab and beyond.
+              Maynit is powered by operational transformation experts with deep sector knowledge and multi-industry execution records across Punjab, Gujarat, and pan-India.
             </p>
           </div>
 
@@ -401,7 +401,7 @@ export default function AboutView({ setView }: AboutViewProps) {
                 </div>
                 <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xxs font-mono text-slate-400">
                   <span>{leader.experienceYears}+ Years Exp</span>
-                  <span className="text-[#0066CC] font-bold">Ludhiana, India</span>
+                  <span className="text-[#0066CC] font-bold">{leader.location}</span>
                 </div>
               </motion.div>
             ))}

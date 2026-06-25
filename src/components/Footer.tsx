@@ -141,7 +141,7 @@ export default function Footer({ setView }: FooterProps) {
               <MapPin className="h-5 w-5 text-[#FF6B35] shrink-0 mt-0.5" />
               <p className="text-slate-300">
                 MAYNIT<br />
-                Ludhiana, Punjab, India
+                Ludhiana (Punjab) & Surat (Gujarat), India
               </p>
             </div>
             <div className="flex items-start space-x-2.5">

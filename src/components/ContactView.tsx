@@ -409,15 +409,22 @@ export default function ContactView() {
               className="bg-slate-50 border border-slate-200 rounded p-6 shadow-sm space-y-4 text-left cursor-default"
             >
               <h4 className="text-[10px] font-extrabold font-mono text-[#003366] uppercase tracking-widest border-b border-slate-200 pb-2">
-                Corporate Headquarters
+                Our Locations
               </h4>
               <div className="space-y-3.5 text-xs font-semibold leading-relaxed">
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-4.5 w-4.5 text-[#0066CC] shrink-0 mt-0.5" />
                   <p className="text-slate-600">
-                    <strong className="text-[#003366]">MAYNIT</strong><br />
-                    Based in Ludhiana, Punjab<br />
+                    <strong className="text-[#003366]">Ludhiana Office</strong><br />
                     Ludhiana, Punjab, India
+                  </p>
+                </div>
+
+                <div className="flex items-start space-x-3">
+                  <MapPin className="h-4.5 w-4.5 text-[#0066CC] shrink-0 mt-0.5" />
+                  <p className="text-slate-600">
+                    <strong className="text-[#003366]">Surat Office</strong><br />
+                    Surat, Gujarat, India
                   </p>
                 </div>
                 

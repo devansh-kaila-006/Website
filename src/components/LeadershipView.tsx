@@ -52,7 +52,7 @@ export default function LeadershipView({ setView }: LeadershipViewProps) {
     'TOC (Theory of Constraints) certified practitioners',
     '50+ successful implementations across diverse industries',
     'Proven results: 50%+ efficiency improvements, 50% cost reductions',
-    'Deep Punjab manufacturing expertise with global perspective',
+    'Deep Punjab & Gujarat manufacturing expertise with global perspective',
     'Implementation focus, not just theoretical consulting'
   ];
 
