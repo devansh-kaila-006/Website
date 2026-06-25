@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://maynit.com/sitemap.xml
+Sitemap: https://www.maynitconsulting.com/sitemap.xml
