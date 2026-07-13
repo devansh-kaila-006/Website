@@ -439,6 +439,15 @@ export default function ContactView() {
                     </a>
                   </div>
                 </div>
+
+                <div className="flex items-start space-x-3">
+                  <Mail className="h-4.5 w-4.5 text-[#0066CC] shrink-0 mt-0.5" />
+                  <div className="text-xs font-semibold leading-relaxed">
+                    <a href="mailto:connect@maynitconsulting.com" className="text-[#003366] hover:underline">
+                      connect@maynitconsulting.com
+                    </a>
+                  </div>
+                </div>
               </div>
             </motion.div>
 

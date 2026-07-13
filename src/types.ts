@@ -97,7 +97,7 @@ export interface ContactFormInput {
 export interface LeaderProfile {
   id: string;
   name: string;
-  title: string;
+  title?: string;
   experienceYears: number;
   location: string;
   photoUrl: string;
@@ -112,5 +112,7 @@ export interface LeaderProfile {
   email?: string;
   phone?: string;
   linkedin?: string;
+  badgeText?: string;
+  customMetrics?: { label: string; value: string }[];
 }
 

@@ -9,6 +9,12 @@ import {
   LeaderProfile
 } from './types';
 
+import rajnishImg from './rajnish.jpeg';
+import vineetImg from './vineet.jpeg';
+import sanjayImg from './sanjay.jpeg';
+import ashwiniImg from './ashwini.jpeg';
+import rashmiImg from './rashmi.jpeg';
+
 export const METRICS: Metric[] = [
   {
     id: 'cost_reduction',
@@ -557,7 +563,7 @@ export const LEADERSHIP_DATA: LeaderProfile[] = [
     title: 'Co-Founder & Digital Transformation Lead',
     experienceYears: 25,
     location: 'Ludhiana, Punjab',
-    photoUrl: 'https://picsum.photos/seed/rajnish/400/400',
+    photoUrl: rajnishImg,
     tagline: '25+ years digital transformation expert with 50+ ServiceNow implementations. TOC certified with 50% OTIF improvement and 50% PLT reduction across manufacturing operations.',
     bioParagraphs: [
       '25+ years senior professional specializing in Program Management and IT-enabled Digital Transformation. Lead delivery for 50+ ServiceNow implementations globally. Formerly served as President IT & Chief IT Architect at Trident Group, leading 100+ Crore tech programs.',
@@ -592,20 +598,25 @@ export const LEADERSHIP_DATA: LeaderProfile[] = [
       'Bachelor of Engineering (Computer Science) - Mumbai University, 1998'
     ],
     beyondWork: 'Rajnish researches digital operations scalability and actively supports youth tech bootcamps in Punjab.',
-    email: 'rajnishkaila76@gmail.com',
+    email: 'rajnish@maynitconsulting.com',
     phone: '+91 9872422589',
-    linkedin: 'https://www.linkedin.com/in/rajnish-kaila-259a36113/'
+    linkedin: 'https://www.linkedin.com/in/rajnish-kaila-259a36113/',
+    badgeText: 'TOC CERTIFIED',
+    customMetrics: [
+      { label: 'ServiceNow Deployments', value: '50+ Projects' },
+      { label: 'Program Budgets', value: '100+ Cr Managed' }
+    ]
   },
   {
     id: 'vineet_kulshreshtha',
     name: 'Vineet Kulshreshtha',
     title: 'Co-Founder & Operations Excellence Lead',
-    experienceYears: 23,
-    location: 'Ludhiana, Punjab',
-    photoUrl: 'https://picsum.photos/seed/vineet/400/400',
-    tagline: '23+ years operations expert delivering 40%+ efficiency improvements through TOC implementation and supply chain optimization. Proven track record: on-time performance from 41% to 99.4%.',
+    experienceYears: 27,
+    location: 'Surat, Gujarat',
+    photoUrl: vineetImg,
+    tagline: '27+ years operations expert delivering 40%+ efficiency improvements through TOC implementation and supply chain optimization. Proven track record: on-time performance from 41% to 99.4%.',
     bioParagraphs: [
-      'Senior Management Professional with 23+ years expertise in Operations, P&L, Textiles Manufacturing, Systems & Supply Chain. Expert in TOC implementation with proven results: on-time performance from 41% to 99.4%. Recently served as VP - Operations & Supply Chain, Trident Limited.',
+      'Senior Management Professional with 27+ years expertise in Operations, P&L, Textiles Manufacturing, Systems & Supply Chain. Expert in TOC implementation with proven results: on-time performance from 41% to 99.4%. Recently served as VP - Operations & Supply Chain, Trident Limited.',
       'Vineet is an operations management authority specializing in process re-engineering and planning matrices. He focuses on on-time delivery (OTIF), supply chain scaling, inventory compression, and full-scale factory layouts, delivering systemic cost optimizations and productivity lifts.'
     ],
     coreExpertise: [
@@ -619,13 +630,13 @@ export const LEADERSHIP_DATA: LeaderProfile[] = [
       'TOC Certification - Vector Consulting (2020)',
       'SAP Functional Training PP - SAP India (2017)',
       'NOW Functional Training (2011)',
-      '23+ Years manufacturing operations experience'
+      '27+ Years manufacturing operations experience'
     ],
     industriesServed: [
-      { name: 'Textiles', years: 20 },
-      { name: 'Manufacturing', years: 23 },
-      { name: 'Supply Chain', years: 15 },
-      { name: 'Operations', years: 23 }
+      { name: 'Textiles', years: 27 },
+      { name: 'Operations & Manufacturing', years: 27 },
+      { name: 'Supply Chain', years: 25 },
+      { name: 'System Consulting', years: 25 }
     ],
     notableAchievements: [
       'Engineered on-time delivery metric shift from 41% to 99.4% via strict synchronization workflows.',
@@ -633,13 +644,157 @@ export const LEADERSHIP_DATA: LeaderProfile[] = [
       'Managed multiple high-complexity enterprise SAP S/4HANA core deployments (Trident, Welspun, Bombay Rayon).'
     ],
     education: [
-      'PGDBM - Marketing & Operation Management (1999)',
-      'B.Sc. PCM (1996)'
+      'PGDBM ( Operation) 1999'
     ],
     beyondWork: 'Vineet centers his efforts on mentoring young manufacturing technical engineers and applying Theory of Constraints in supply networks.',
-    email: 'vineetkul76@gmail.com',
+    email: 'vineet@maynitconsulting.com',
     phone: '+91 7069010057',
-    linkedin: 'https://www.linkedin.com/in/vineet-kulshreshtha-46a7674b/'
+    linkedin: 'https://www.linkedin.com/in/vineet-kulshreshtha-46a7674b/',
+    badgeText: 'TOC CERTIFIED',
+    customMetrics: [
+      { label: 'On-Time OTIF', value: '41% → 99.4%' },
+      { label: 'Cost Reduction', value: '50% Overheads' }
+    ]
+  },
+  {
+    id: 'sanjay_kumar_lal',
+    name: 'Sanjay Kumar Lal',
+    experienceYears: 28,
+    location: 'Ludhiana, Punjab',
+    photoUrl: sanjayImg,
+    tagline: '28+ years enterprise IT authority specializing in greenfield SAP S/4HANA implementations, custom ERP design (Oracle 10g), and complex multi-company infrastructure.',
+    bioParagraphs: [
+      'Sanjay is a premier IT leader and SAP architect with 28+ years of expertise. Out of his total career, he has spent 20+ years driving industrial-scale SAP implementations, rollouts, upgrades, and support initiatives, including greenfield S/4HANA rollouts. He is highly proficient in both functional and technical dimensions of SAP modules and cross-functional enterprise integrations.',
+      'Sanjay has successfully served as IT Head and Project Manager across key sectors such as chemicals, fibers, pulp, paper, textiles, glass, and specialized process industries. His accomplishments include developing and deploying a massive B2B & B2C e-commerce system for a top Indian power tools brand with 600+ distributors, and architecting an in-house multi-company Oracle ERP system within the Aditya Birla Group.'
+    ],
+    coreExpertise: [
+      'SAP S/4HANA Implementation',
+      'Oracle ERP Custom Design',
+      'E-Commerce B2B & B2C Platforms',
+      'IT Roadmap & Digital Strategy',
+      'Agile Scrum Project Management',
+      'Cybersecurity & Infra Governance'
+    ],
+    credentials: [
+      'PRINCE2 Foundation Certified',
+      'PRINCE2 Practitioner Certified',
+      'SAP Technical & Functional Expert',
+      '28+ years enterprise systems experience'
+    ],
+    industriesServed: [
+      { name: 'Chemicals & Fibers', years: 10 },
+      { name: 'Textiles & Process', years: 15 },
+      { name: 'E-Commerce & Retail', years: 5 },
+      { name: 'IT Infrastructure', years: 28 }
+    ],
+    notableAchievements: [
+      'Orchestrated multiple successful SAP rollouts, upgrades, and greenfield S/4HANA implementations.',
+      'Developed and deployed an enterprise B2B & B2C E-commerce platform for a leading Indian power tools brand serving 600+ distributors.',
+      'Created an in-house multi-company, multi-location Oracle 10g ERP from scratch for Aditya Birla Group.',
+      'Supervised extensive IT infrastructure including 1,500+ corporate endpoints, DR/PR sites, and information security.'
+    ],
+    education: [
+      'M.Sc. (Information Technology)',
+      'PGDBA (Finance) - Symbiosis University, 2010',
+      'International Diploma in Computer Programming - NCC, UK'
+    ],
+    beyondWork: 'Sanjay researches custom automated integration workflows and mentors youth starting careers in enterprise programming.',
+    badgeText: 'PRINCE2 PRAC.',
+    customMetrics: [
+      { label: 'SAP Experience', value: '20+ Years' },
+      { label: 'Endpoints Managed', value: '1,500+ Devices' }
+    ]
+  },
+  {
+    id: 'ashwani_handa',
+    name: 'Ashwani Handa',
+    experienceYears: 25,
+    location: 'Princeton, New Jersey, USA',
+    photoUrl: ashwiniImg,
+    tagline: '25+ years IT leader with extensive experience driving massive system implementations across US Healthcare, Finance, Banking, and Insurance sectors.',
+    bioParagraphs: [
+      'Ashwani Handa brings over 25 years of diverse global IT leadership and execution experience. Since relocating to the United States in 2003, he has guided complex, large-scale technology transformations across leading organizations in the Banking, Finance, Healthcare, and Insurance sectors.',
+      'In 2011, Ashwani co-founded Maynit Corporation, building highly successful business process consulting partnerships between organizations in the US and India. By combining world-class technical methodologies with reliable on-shore and offshore execution, his leadership ensures that Maynit delivers unmatched strategic value to its partners.'
+    ],
+    coreExpertise: [
+      'Global IT Program Management',
+      'Enterprise Tech Strategy',
+      'Healthcare & Banking Platforms',
+      'Offshore Execution & Governance',
+      'Agile Delivery Methodologies'
+    ],
+    credentials: [
+      'Agile Delivery Practitioner Certifications',
+      'Enterprise Platform Architect Certified',
+      'Co-Founder of Maynit Corporation (2011)',
+      '25+ years international IT leadership'
+    ],
+    industriesServed: [
+      { name: 'Banking & Finance', years: 20 },
+      { name: 'Healthcare & Insurance', years: 15 },
+      { name: 'Consulting & IT Services', years: 25 }
+    ],
+    notableAchievements: [
+      'Co-founded Maynit Corporation, expanding high-level process consulting collaborations with companies in India.',
+      'Directed multimillion-dollar technology transformation architectures for major US financial and insurance groups.',
+      'Designed agile global delivery structures combining US corporate practices with Indian technical execution.'
+    ],
+    education: [
+      'Master of Science (Software Systems) - BITS Pilani',
+      'Bachelor of Engineering (Electrical) - Kurukshetra University'
+    ],
+    beyondWork: 'Ashwani is an avid developer mentor and actively studies emerging cloud architectures and system engineering standards.',
+    badgeText: 'CO-FOUNDER',
+    customMetrics: [
+      { label: 'Global IT Exp', value: '25+ Years' },
+      { label: 'US-India Tech Partnerships', value: '14+ Years' }
+    ]
+  },
+  {
+    id: 'rashmi_handa',
+    name: 'Rashmi Handa',
+    experienceYears: 15,
+    location: 'Princeton, New Jersey, USA',
+    photoUrl: rashmiImg,
+    tagline: 'Co-Founder of Maynit Corporation with key contributions in US public health projects, corporate finance, and early education consulting.',
+    bioParagraphs: [
+      'Rashmi Handa relocated to the United States in 2005 and has since worked with multiple leading US organizations, managing critical initiatives in the Healthcare and Finance sectors, including public government projects. In 2011, she co-founded Maynit Corporation to foster high-impact business process partnerships between US and Indian enterprises.',
+      'With a diverse background spanning chemistry, healthcare systems, financial consulting, and early childhood education, Rashmi brings a deep commitment to people-centered outcomes. She believes that true transformation starts with team-level alignment, a value she infuses into every Maynit collaboration.'
+    ],
+    coreExpertise: [
+      'Business Process Consulting',
+      'US Healthcare & Public Finance',
+      'Cross-Border Team Building',
+      'Agile Delivery Frameworks',
+      'People-Centered Alignment'
+    ],
+    credentials: [
+      'Montessori Certification - Princeton, NJ',
+      'Agile Delivery Practitioner Certifications',
+      'Co-Founder of Maynit Corporation (2011)',
+      '15+ years process consulting experience'
+    ],
+    industriesServed: [
+      { name: 'Healthcare & Public Sector', years: 12 },
+      { name: 'Financial Services', years: 10 },
+      { name: 'Consulting & Operations', years: 15 },
+      { name: 'Education & Training', years: 8 }
+    ],
+    notableAchievements: [
+      'Co-founded Maynit Corporation, successfully spearheading collaborative business process networks.',
+      'Directed operational and process compliance for US public health and government financial sector accounts.',
+      'Established high-trust organizational frameworks that combine process structure with creative educational design.'
+    ],
+    education: [
+      'Master of Science (Chemistry) - Kurukshetra University',
+      'Montessori Certification - Princeton, New Jersey'
+    ],
+    beyondWork: 'Rashmi is an accomplished vocalist who actively supports community art projects and values creative performing arts.',
+    badgeText: 'CO-FOUNDER',
+    customMetrics: [
+      { label: 'US Project Exp', value: '20+ Years' },
+      { label: 'Process Networks', value: 'Global' }
+    ]
   }
 ];
 

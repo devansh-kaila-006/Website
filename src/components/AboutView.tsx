@@ -374,7 +374,7 @@ export default function AboutView({ setView }: AboutViewProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {LEADERSHIP_DATA.map((leader) => (
               <motion.div 
                 key={leader.id}
@@ -392,7 +392,9 @@ export default function AboutView({ setView }: AboutViewProps) {
                     />
                     <div>
                       <h4 className="text-sm font-extrabold text-[#003366] leading-tight">{leader.name}</h4>
-                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{leader.title}</p>
+                      {leader.title && (
+                        <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">{leader.title}</p>
+                      )}
                     </div>
                   </div>
                   <p className="text-xs text-slate-500 leading-relaxed font-semibold">

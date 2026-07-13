@@ -223,17 +223,21 @@ export default function LeadershipView({ setView }: LeadershipViewProps) {
                       </div>
                       
                       {/* Certified Indicator badge on avatar */}
-                      <span className="absolute bottom-1 right-2 bg-[#D97706]/95 text-[#FAF7F2] text-[9px] font-bold font-mono tracking-wider py-1 px-2.5 rounded-lg shadow">
-                        TOC CERTIFIED
-                      </span>
+                      {leader.badgeText && (
+                        <span className="absolute bottom-1 right-2 bg-[#D97706]/95 text-[#FAF7F2] text-[9px] font-bold font-mono tracking-wider py-1 px-2.5 rounded-lg shadow">
+                          {leader.badgeText}
+                        </span>
+                      )}
                     </div>
 
                     <h3 className="text-xl font-extrabold text-[#115E59] tracking-tight">
                       {leader.name}
                     </h3>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">
-                      {leader.title}
-                    </p>
+                    {leader.title && (
+                      <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">
+                        {leader.title}
+                      </p>
+                    )}
                     
                     <div className="flex items-center space-x-1 text-slate-400 text-xxs font-mono uppercase tracking-widest mt-3">
                       <MapPin className="h-3 w-3 text-amber-500 shrink-0" />
@@ -280,33 +284,29 @@ export default function LeadershipView({ setView }: LeadershipViewProps) {
                     <div className="space-y-6">
                       {/* Metric highlights tags right at the top */}
                       <div className="flex flex-wrap gap-2.5">
-                        <div className="bg-[#115E59]/5 border border-[#115E59]/10 rounded-xl py-2 px-3 flex.col items-start min-w-[120px]">
+                        <div className="bg-[#115E59]/5 border border-[#115E59]/10 rounded-xl py-2 px-3 flex flex-col items-start min-w-[120px]">
                           <span className="text-[10px] uppercase font-bold text-slate-400 font-mono tracking-wider">Experience</span>
                           <p className="text-base font-extrabold text-[#115E59] tracking-tight">{leader.experienceYears}+ Years</p>
                         </div>
-                        {isVineet ? (
-                          <>
-                            <div className="bg-[#D97706]/5 border border-[#D97706]/10 rounded-xl py-2 px-3 min-w-[120px]">
-                              <span className="text-[10px] uppercase font-bold text-slate-400 font-mono tracking-wider">On-Time OTIF</span>
-                              <p className="text-base font-extrabold text-[#D97706] tracking-tight">41% → 99.4%</p>
-                            </div>
-                            <div className="bg-blue-55/5 border border-slate-200 rounded-xl py-2 px-3 min-w-[120px]">
-                              <span className="text-[10px] uppercase font-bold text-slate-400 font-mono tracking-wider">Cost Reduction</span>
-                              <p className="text-base font-extrabold text-slate-700 tracking-tight">50% Overheads</p>
-                            </div>
-                          </>
-                        ) : (
-                          <>
-                            <div className="bg-[#D97706]/5 border border-[#D97706]/10 rounded-xl py-2 px-3 min-w-[120px]">
-                              <span className="text-[10px] uppercase font-bold text-slate-400 font-mono tracking-wider">ServiceNow Deployments</span>
-                              <p className="text-base font-extrabold text-[#D97706] tracking-tight">50+ Projects</p>
-                            </div>
-                            <div className="bg-blue-55/5 border border-slate-200 rounded-xl py-2 px-3 min-w-[120px]">
-                              <span className="text-[10px] uppercase font-bold text-slate-400 font-mono tracking-wider">Program Budgets</span>
-                              <p className="text-base font-extrabold text-slate-700 tracking-tight">100+ Cr Managed</p>
-                            </div>
-                          </>
-                        )}
+                        {leader.customMetrics?.map((metric, mIdx) => (
+                          <div 
+                            key={mIdx}
+                            className={`rounded-xl py-2 px-3 min-w-[120px] ${
+                              mIdx === 0 
+                                ? 'bg-[#D97706]/5 border border-[#D97706]/10' 
+                                : 'bg-[#115E59]/5 border border-slate-200'
+                            }`}
+                          >
+                            <span className="text-[10px] uppercase font-bold text-slate-400 font-mono tracking-wider">{metric.label}</span>
+                            <p 
+                              className={`text-base font-extrabold tracking-tight ${
+                                mIdx === 0 ? 'text-[#D97706]' : 'text-slate-700'
+                              }`}
+                            >
+                              {metric.value}
+                            </p>
+                          </div>
+                        ))}
                       </div>
 
                       {/* Tagline sentence */}

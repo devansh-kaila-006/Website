@@ -3,6 +3,13 @@ import { Menu, X, Building2, PhoneCall, ChevronDown, Link } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import logo from '../logo.png';
 
+// Team member images
+import rajnishImg from '../rajnish.jpeg';
+import vineetImg from '../vineet.jpeg';
+import sanjayImg from '../sanjay.jpeg';
+import ashwiniImg from '../ashwini.jpeg';
+import rashmiImg from '../rashmi.jpeg';
+
 interface HeaderProps {
   currentView: string;
   setView: (view: string) => void;
@@ -128,6 +135,7 @@ export default function Header({
     label: string;
     desc?: string;
     badge?: string;
+    image?: string;
     action: () => void;
   }
 
@@ -149,8 +157,11 @@ export default function Header({
         ];
       case 'leadership':
         return [
-          { label: 'Rajnish Kaila', desc: 'Digital Transformation & ServiceNow Delivery Lead (25+ Yrs Exp).', badge: 'Co-Founder', action: () => handleNav('leadership', 'leader-card-rajnish_kaila') },
-          { label: 'Vineet Kulshreshtha', desc: 'Operational Excellence Lead & TOC Industry Specialist (23+ Yrs Exp).', badge: 'Co-Founder', action: () => handleNav('leadership', 'leader-card-vineet_kulshreshtha') },
+          { label: 'Rajnish Kaila', image: rajnishImg, action: () => handleNav('leadership', 'leader-card-rajnish_kaila') },
+          { label: 'Vineet Kulshreshtha', image: vineetImg, action: () => handleNav('leadership', 'leader-card-vineet_kulshreshtha') },
+          { label: 'Sanjay Kumar Lal', image: sanjayImg, action: () => handleNav('leadership', 'leader-card-sanjay_kumar_lal') },
+          { label: 'Ashwani Handa', image: ashwiniImg, action: () => handleNav('leadership', 'leader-card-ashwani_handa') },
+          { label: 'Rashmi Handa', image: rashmiImg, action: () => handleNav('leadership', 'leader-card-rashmi_handa') },
           { label: 'Core Advisory Standards', desc: 'Continuous on-floor accountability, capability transfer, and client ROI metrics.', action: () => handleNav('leadership', 'leadership_standards') },
         ];
       case 'services':
@@ -267,7 +278,7 @@ export default function Header({
                           <span className="text-[#FF6B35] font-semibold text-[8px] tracking-widest bg-orange-50 px-2 py-0.5 rounded-lg border border-orange-100">CLICKABLE QUICK LINKS</span>
                         </div>
 
-                        {/* Link list */}
+                         {/* Link list */}
                         <div className={`gap-3 ${item.id === 'services' ? 'grid grid-cols-2' : 'flex flex-col'}`}>
                           {dropdownLinks.map((link, idx) => (
                             <button
@@ -275,14 +286,23 @@ export default function Header({
                               onClick={() => handleDropdownItemClick(link.action)}
                               className="w-full text-left p-2.5 rounded-xl border border-transparent hover:border-slate-150/70 hover:bg-[#E6F3FF]/20 hover:shadow-sm focus:outline-none transition-all duration-150 group flex items-start space-x-3 cursor-pointer"
                             >
-                              <div className="shrink-0 mt-0.5 p-1.5 rounded-lg bg-slate-50 text-[#0066CC] group-hover:bg-[#FF6B35] group-hover:text-white transition-colors duration-150">
-                                {link.badge ? (
-                                  <span className="text-[8px] font-mono font-bold tracking-tight px-0.5">{link.badge}</span>
-                                ) : (
-                                  <Link className="h-3.5 w-3.5" />
-                                )}
-                              </div>
-                              <div className="flex-grow min-w-0">
+                              {link.image ? (
+                                <img 
+                                  src={link.image} 
+                                  alt={link.label} 
+                                  className="h-9 w-9 rounded-full object-cover shrink-0 border border-slate-200 shadow-sm"
+                                  referrerPolicy="no-referrer"
+                                />
+                              ) : (
+                                <div className="shrink-0 mt-0.5 p-1.5 rounded-lg bg-slate-50 text-[#0066CC] group-hover:bg-[#FF6B35] group-hover:text-white transition-colors duration-150">
+                                  {link.badge ? (
+                                    <span className="text-[8px] font-mono font-bold tracking-tight px-0.5">{link.badge}</span>
+                                  ) : (
+                                    <Link className="h-3.5 w-3.5" />
+                                  )}
+                                </div>
+                              )}
+                              <div className="flex-grow min-w-0 self-center">
                                 <p className="text-[12px] font-bold text-[#003366] group-hover:text-[#0066CC] leading-snug">
                                   {link.label}
                                 </p>
@@ -380,10 +400,19 @@ export default function Header({
                             setIsOpen(false);
                             link.action();
                           }}
-                          className="w-full text-left py-2 px-3 rounded-lg text-xs font-bold text-slate-650 hover:text-[#0066CC] hover:bg-[#E6F3FF]/45 transition-colors duration-150 flex items-start space-x-2.5"
+                          className="w-full text-left py-2 px-3 rounded-lg text-xs font-bold text-slate-650 hover:text-[#0066CC] hover:bg-[#E6F3FF]/45 transition-colors duration-150 flex items-start space-x-2.5 items-center"
                         >
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B35] mt-1.5 shrink-0 animate-pulse"></span>
-                          <div>
+                          {link.image ? (
+                            <img 
+                              src={link.image} 
+                              alt={link.label} 
+                              className="h-6 w-6 rounded-full object-cover shrink-0 border border-slate-150 shadow-sm"
+                              referrerPolicy="no-referrer"
+                            />
+                          ) : (
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#FF6B35] mt-1.5 shrink-0 animate-pulse"></span>
+                          )}
+                          <div className="flex-grow min-w-0 self-center">
                             <p className="font-bold text-slate-800 tracking-tight leading-tight">{link.label}</p>
                             {link.desc && <p className="text-[10px] text-slate-400 font-normal mt-0.5 line-clamp-1">{link.desc}</p>}
                           </div>

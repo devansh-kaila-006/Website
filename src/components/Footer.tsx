@@ -155,6 +155,14 @@ export default function Footer({ setView }: FooterProps) {
                 </a>
               </div>
             </div>
+            <div className="flex items-start space-x-2.5">
+              <Mail className="h-4.5 w-4.5 text-[#FF6B35] shrink-0 mt-0.5" />
+              <div className="text-slate-300 text-sm">
+                <a href="mailto:connect@maynitconsulting.com" className="hover:text-[#FF6B35] transition-colors">
+                  connect@maynitconsulting.com
+                </a>
+              </div>
+            </div>
           </div>
 
 
